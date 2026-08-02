@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icons Qolbul Qur'an</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f3f0ff; }
+        .container { max-width: 600px; margin: 0 auto; }
+        button { padding: 12px 24px; background: #7c3aed; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .result { margin-top: 20px; }
+        .icon-preview { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .icon-item { text-align: center; background: white; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
+        img { display: block; margin: 0 auto; }
+        .download-all { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕌 Generate Icons Qolbul Qur'an</h1>
+        <p>Klik tombol di bawah untuk generate semua icon yang dibutuhkan untuk PWA.</p>
+        <button onclick="generateIcons()">Generate All Icons</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function generateIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            const container = document.getElementById('result');
+            container.innerHTML = '<p>⏳ Generating icons...</p>';
+            
+            let html = '<div class="icon-preview">';
+            let count = 0;
+
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+
+                // Background
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#7c3aed');
+                gradient.addColorStop(0.5, '#4f46e5');
+                gradient.addColorStop(1, '#6366f1');
+                ctx.fillStyle = gradient;
+                ctx.roundRect(0, 0, size, size, size * 0.15);
+                ctx.fill();
+
+                // Circle border
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = size * 0.02;
+                ctx.beginPath();
+                ctx.arc(size/2, size/2, size * 0.42, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Emoji/Text
+                ctx.fillStyle = 'white';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                const fontSize = size * 0.45;
+                ctx.font = fontSize + 'px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+                ctx.fillText('📖', size/2, size/2 + size * 0.02);
+
+                // Small text
+                ctx.fillStyle = 'rgba(255,255,255,0.3)';
+                ctx.font = size * 0.06 + 'px Arial';
+                ctx.fillText('Qolbul', size/2, size * 0.85);
+
+                // Download
+                const link = document.createElement('a');
+                link.download = `icon-${size}x${size}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                // Preview
+                html += `
+                    <div class="icon-item">
+                        <img src="${canvas.toDataURL('image/png')}" width="${Math.min(size, 64)}" height="${Math.min(size, 64)}" />
+                        <div>${size}x${size}</div>
+                    </div>
+                `;
+
+                count++;
+            });
+
+            html += '</div>';
+            html += `<p>✅ ${count} icons generated and downloaded!</p>`;
+            html += `<p class="download-all">📁 Semua icon sudah didownload otomatis. Pindahkan ke folder <strong>icons/</strong></p>`;
+            
+            container.innerHTML = html;
+        }
+
+        // Polyfill for roundRect if not available
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+                if (r > w/2) r = w/2;
+                if (r > h/2) r = h/2;
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+                return this;
+            };
+        }
+    </script>
+</body>
+</html>

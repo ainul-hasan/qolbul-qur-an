@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Offline - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #f3f0ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .offline-container {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(16px);
+            border-radius: 28px;
+            padding: 40px 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            animation: fadeSlide 0.5s ease;
+        }
+        .offline-icon { font-size: 80px; color: #7c3aed; margin-bottom: 20px; animation: pulse 2s ease-in-out infinite; }
+        .offline-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #1e1b4b; }
+        .offline-desc { font-size: 16px; color: #4b5563; margin-bottom: 4px; }
+        .offline-sub { font-size: 14px; color: #9ca3af; margin-bottom: 28px; }
+        .offline-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #6366f1 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 30px rgba(124,58,237,0.35);
+        }
+        .offline-btn:active { transform: scale(0.95); }
+        .offline-list { margin-top: 30px; text-align: left; padding-top: 20px; border-top: 1px solid rgba(128,128,128,0.15); }
+        .offline-list-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; color: #4b5563; border-bottom: 1px solid rgba(128,128,128,0.08); }
+        .offline-list-item:last-child { border-bottom: none; }
+        .offline-list-item i { color: #7c3aed; width: 24px; font-size: 18px; }
+        .offline-list-item span { font-size: 14px; }
+        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+        @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        @media (prefers-color-scheme: dark) {
+            body { background: #0f0a1a; }
+            .offline-container { background: rgba(30,27,50,0.7); border-color: rgba(255,255,255,0.08); }
+            .offline-title { color: #ede9fe; }
+            .offline-desc { color: #c4b5fd; }
+            .offline-sub { color: #8b7bbd; }
+            .offline-list-item { color: #c4b5fd; }
+            .offline-list-item i { color: #a78bfa; }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon"><i class="fas fa-wifi-slash"></i></div>
+        <h1 class="offline-title">Tidak Ada Koneksi</h1>
+        <p class="offline-desc">Anda sedang offline, tetapi jangan khawatir!</p>
+        <p class="offline-sub">Anda masih bisa membaca bacaan yang sudah di-cache</p>
+        <a href="./" class="offline-btn"><i class="fas fa-home"></i> Buka Dashboard</a>
+        <div class="offline-list">
+            <div class="offline-list-item"><i class="fas fa-check-circle"></i><span>Data bacaan tersimpan</span></div>
+            <div class="offline-list-item"><i class="fas fa-heart"></i><span>Favorit tetap tersimpan</span></div>
+            <div class="offline-list-item"><i class="fas fa-book-quran"></i><span>Progress hafalan tetap</span></div>
+            <div class="offline-list-item"><i class="fas fa-sync-alt"></i><span>Data akan sinkron saat online</span></div>
+        </div>
+    </div>
+</body>
+</html>

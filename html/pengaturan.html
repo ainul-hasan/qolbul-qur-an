@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Pengaturan - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <div id="content" class="content-area">
+            <h3 class="page-title">Pengaturan</h3>
+            <div class="card card-glass">
+                <!-- Tema -->
+                <div class="setting-group">
+                    <h4>Tema</h4>
+                    <div class="setting-item">
+                        <span>Mode Gelap</span>
+                        <div class="toggle" id="themeToggle"></div>
+                    </div>
+                </div>
+
+                <!-- Tampilan -->
+                <div class="setting-group">
+                    <h4>Tampilan</h4>
+                    <div class="setting-item">
+                        <div class="toggle-label" id="toggleLatinLabel">
+                            <span>Tampilkan Latin</span>
+                            <div class="toggle-sm active" id="toggleLatin"></div>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="toggle-label" id="toggleTranslationLabel">
+                            <span>Tampilkan Terjemahan</span>
+                            <div class="toggle-sm active" id="toggleTranslation"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ukuran Teks -->
+                <div class="setting-group">
+                    <h4>Ukuran Teks</h4>
+                    <div class="text-size-buttons">
+                        <button class="text-size-btn" data-size="small">
+                            <span class="size-icon" style="font-size:12px;">A</span>
+                            <span class="size-label">Kecil</span>
+                        </button>
+                        <button class="text-size-btn active" data-size="medium">
+                            <span class="size-icon" style="font-size:16px;">A</span>
+                            <span class="size-label">Sedang</span>
+                        </button>
+                        <button class="text-size-btn" data-size="large">
+                            <span class="size-icon" style="font-size:20px;">A</span>
+                            <span class="size-label">Besar</span>
+                        </button>
+                        <button class="text-size-btn" data-size="xlarge">
+                            <span class="size-icon" style="font-size:24px;">A</span>
+                            <span class="size-label">Sangat Besar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Data -->
+                <div class="setting-group">
+                    <h4>Data</h4>
+                    <div class="setting-item"><span>Reset Favorit</span><button class="danger" id="resetFav">Reset</button></div>
+                    <div class="setting-item"><span>Reset Selesai</span><button class="danger" id="resetDone">Reset</button></div>
+                    <div class="setting-item"><span>Reset Semua Data</span><button class="danger" id="resetAll">Reset Semua</button></div>
+                </div>
+
+                <!-- Informasi -->
+                <div class="setting-group">
+                    <h4>Informasi</h4>
+                    <div class="setting-item"><span>Versi</span><span>1.0.0</span></div>
+                    <div class="setting-item"><span>Total Bacaan</span><span id="totalBacaan">0</span></div>
+                    <div class="setting-item"><span>Qolbul Qur'an</span><span>✨</span></div>
+                </div>
+
+                <div class="version">© 2026 Qolbul Qur'an · Ainul Hasan</div>
+            </div>
+        </div>
+        <nav class="bottom-nav glass">
+            <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item"><i class="fas fa-list"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item active"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+        var data = window.READINGS_DATA || [];
+        document.getElementById('totalBacaan').textContent = data.length;
+
+        // ===== APPLY VISIBILITY =====
+        function applyVisibility() {
+            var showLatin = localStorage.getItem('showLatin') !== 'false';
+            var showTranslation = localStorage.getItem('showTranslation') !== 'false';
+            
+            if (!showLatin) document.body.classList.add('hide-latin');
+            else document.body.classList.remove('hide-latin');
+            
+            if (!showTranslation) document.body.classList.add('hide-translation');
+            else document.body.classList.remove('hide-translation');
+        }
+
+        // ===== THEME =====
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                document.getElementById('themeToggle').classList.add('active');
+            }
+        }
+
+        function toggleTheme() {
+            var isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeToggle').classList.toggle('active');
+        }
+
+        initTheme();
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+        // ===== TOGGLE LATIN =====
+        var toggleLatin = document.getElementById('toggleLatin');
+        var showLatin = localStorage.getItem('showLatin') !== 'false';
+        if (showLatin) toggleLatin.classList.add('active');
+        
+        toggleLatin.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            var show = this.classList.contains('active');
+            localStorage.setItem('showLatin', show ? 'true' : 'false');
+            applyVisibility();
+        });
+
+        document.getElementById('toggleLatinLabel').addEventListener('click', function() {
+            toggleLatin.click();
+        });
+
+        // ===== TOGGLE TERJEMAHAN =====
+        var toggleTranslation = document.getElementById('toggleTranslation');
+        var showTranslation = localStorage.getItem('showTranslation') !== 'false';
+        if (showTranslation) toggleTranslation.classList.add('active');
+        
+        toggleTranslation.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            var show = this.classList.contains('active');
+            localStorage.setItem('showTranslation', show ? 'true' : 'false');
+            applyVisibility();
+        });
+
+        document.getElementById('toggleTranslationLabel').addEventListener('click', function() {
+            toggleTranslation.click();
+        });
+
+        // ===== TEXT SIZE =====
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+            localStorage.setItem('textSize', size);
+        }
+
+        function initTextSize() {
+            var saved = localStorage.getItem('textSize') || 'medium';
+            setTextSize(saved);
+            document.querySelectorAll('.text-size-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+                if (btn.dataset.size === saved) btn.classList.add('active');
+            });
+        }
+
+        initTextSize();
+
+        document.querySelectorAll('.text-size-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var size = this.dataset.size;
+                setTextSize(size);
+                document.querySelectorAll('.text-size-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // ===== RESET =====
+        function resetData(key, message) {
+            if (confirm(message)) {
+                localStorage.setItem(key, '[]');
+                alert('Data berhasil direset!');
+            }
+        }
+
+        document.getElementById('resetFav').addEventListener('click', function() {
+            resetData('favorit', 'Hapus semua favorit?');
+        });
+
+        document.getElementById('resetDone').addEventListener('click', function() {
+            resetData('selesai', 'Hapus semua data selesai?');
+        });
+
+        document.getElementById('resetAll').addEventListener('click', function() {
+            if (confirm('Reset semua data (favorit & selesai)?')) {
+                localStorage.setItem('favorit', '[]');
+                localStorage.setItem('selesai', '[]');
+                alert('Semua data berhasil direset!');
+            }
+        });
+
+        applyVisibility();
+
+        // ===== BACK BUTTON =====
+        window.addEventListener('popstate', function(event) {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        });
+        history.pushState(null, '', window.location.href);
+    </script>
+</body>
+</html>

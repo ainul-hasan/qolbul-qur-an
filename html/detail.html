@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Detail - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <div id="content" class="content-area"></div>
+        <nav class="bottom-nav glass">
+            <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item"><i class="fas fa-list"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/semua.js"></script>
+    <script src="../js/favorid.js"></script>
+    <script src="../js/selesai.js"></script>
+    <script src="../js/pengaturan.js"></script>
+    <script>
+        // Get ID from URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = parseInt(urlParams.get('id'));
+
+        // Inisialisasi history untuk multi-page
+        if (!window.navigationHistory) {
+            window.navigationHistory = ['dashboard'];
+            window.currentPage = 'dashboard';
+        }
+
+        // Render detail
+        var container = document.getElementById('content');
+        
+        // Pastikan renderDetail tersedia
+        if (typeof renderDetail === 'function') {
+            renderDetail(container, id);
+        } else {
+            // Fallback jika renderDetail belum loaded
+            var item = getDataById(id);
+            if (item) {
+                var verses = item.verses || [];
+                var html = '';
+                html += '<div class="detail-page">';
+                html += '  <div class="detail-header">';
+                html += '    <button class="back-btn" onclick="history.back()">';
+                html += '      <i class="fas fa-arrow-left"></i>';
+                html += '    </button>';
+                html += '    <div class="title-section">';
+                html += '      <h2>' + item.title + '</h2>';
+                html += '      <p>' + item.category + ' · ' + verses.length + ' ayat</p>';
+                if (item.subtitle) {
+                    html += '      <p style="font-size:calc(12px * var(--text-size-multiplier));color:var(--text-light);">' + item.subtitle + '</p>';
+                }
+                html += '    </div>';
+                html += '  </div>';
+                verses.forEach(function(verse, index) {
+                    html += '  <div class="verse-item">';
+                    html += '    <div class="verse-number">' + (index + 1) + '</div>';
+                    if (verse.arabic) {
+                        html += '    <div class="arabic">' + verse.arabic + '</div>';
+                    }
+                    if (verse.latin) {
+                        html += '    <div class="latin">' + verse.latin + '</div>';
+                    }
+                    if (verse.translation) {
+                        html += '    <div class="translation">' + verse.translation + '</div>';
+                    }
+                    html += '  </div>';
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h4>Data tidak ditemukan</h4><p>Kembali ke halaman sebelumnya</p></div>';
+            }
+        }
+
+        // Theme & Text Size
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+        }
+        setTextSize(localStorage.getItem('textSize') || 'medium');
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // Handle back button di multi-page
+        window.addEventListener('popstate', function(event) {
+            // Cek apakah ada referrer dari dalam site
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                // Kembali ke halaman sebelumnya
+                history.back();
+            } else {
+                // Redirect ke dashboard
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        // Override tombol back di browser
+        history.pushState(null, '', window.location.href);
+    </script>
+</body>
+</html>

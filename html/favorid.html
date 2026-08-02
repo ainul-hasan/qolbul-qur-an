@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Favorit - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <div id="content" class="content-area">
+            <h3 class="page-title">Favorit</h3>
+            <div id="favList"></div>
+        </div>
+        <nav class="bottom-nav glass">
+            <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item"><i class="fas fa-list"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item active"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+        var data = window.READINGS_DATA || [];
+
+        // ===== DAFTAR KATEGORI YANG TIDAK DITAMPILKAN =====
+        var kategoriDihapus = [
+            'Doa Qolbul Qur\'an',
+            'يَارَبَّنَاعتَرَفنَا',
+            'Sholawat Dengan Niat Hajat'
+        ];
+
+        function getFavorit() { return JSON.parse(localStorage.getItem('favorit') || '[]'); }
+
+        function toggleFavorit(id) {
+            var fav = getFavorit();
+            var idx = fav.indexOf(id);
+            if (idx > -1) fav.splice(idx, 1);
+            else fav.push(id);
+            localStorage.setItem('favorit', JSON.stringify(fav));
+            renderList();
+        }
+
+        function openDetail(id) {
+            window.location.href = 'detail.html?id=' + id;
+        }
+
+        function renderList() {
+            var container = document.getElementById('favList');
+            var favorit = getFavorit();
+            
+            // Filter favorit - hapus yang kategorinya dihapus
+            var favData = data.filter(function(item) {
+                return favorit.indexOf(item.id) > -1 && 
+                       kategoriDihapus.indexOf(item.category) === -1;
+            });
+
+            if (favData.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-heart"></i><h4>Belum ada favorit</h4><p>Tambahkan bacaan favoritmu dari halaman Semua</p></div>';
+                return;
+            }
+
+            var html = '';
+            favData.forEach(function(item) {
+                var totalAyat = item.totalVerses || (item.verses ? item.verses.length : 0);
+                html += '<div class="item-card" data-id="' + item.id + '" onclick="openDetail(' + item.id + ')">';
+                html += '  <div class="info">';
+                html += '    <h4>' + item.title + '</h4>';
+                html += '    <p>' + item.category + ' · ' + totalAyat + ' ayat</p>';
+                if (item.subtitle) html += '    <p class="subtitle">' + item.subtitle + '</p>';
+                html += '  </div>';
+                html += '  <div class="item-actions">';
+                html += '    <button class="fav-btn fav-active" data-id="' + item.id + '" onclick="event.stopPropagation();toggleFavorit(' + item.id + ')">';
+                html += '      <i class="fas fa-heart"></i>';
+                html += '    </button>';
+                html += '  </div>';
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
+        }
+
+        renderList();
+
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+        }
+        setTextSize(localStorage.getItem('textSize') || 'medium');
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        window.addEventListener('popstate', function(event) {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        });
+        history.pushState(null, '', window.location.href);
+    </script>
+</body>
+</html>

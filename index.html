@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Qolbul Qur'an</title>
+    
+    <!-- ===== PWA META TAGS ===== -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#7c3aed">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Qolbul Qur'an">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    <link rel="alternate" href="./offline.html">
+    
+    <!-- ===== FONTS & ICONS ===== -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <!-- ===== SERVICE WORKER ===== -->
+    <script>
+        // Cek apakah dijalankan melalui https (GitHub Pages) atau localhost
+        if (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('./sw.js', { scope: './' })
+                        .then(function(registration) {
+                            console.log('[PWA] Service Worker registered:', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.log('[PWA] Service Worker registration failed:', error);
+                        });
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader-wrapper">
+            <div class="loader-icon"><i class="fas fa-book-quran"></i></div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <p class="loader-text">Memuat Qolbul Qur'an...</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="app-container">
+        <div id="content" class="content-area"></div>
+        
+        <!-- Bottom Navigation -->
+        <nav id="bottomNav" class="bottom-nav glass">
+            <div class="nav-item active" data-page="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item" data-page="semua">
+                <i class="fas fa-list"></i>
+                <span>Semua</span>
+            </div>
+            <div class="nav-item" data-page="favorid">
+                <i class="fas fa-heart"></i>
+                <span>Favorit</span>
+            </div>
+            <div class="nav-item" data-page="selesai">
+                <i class="fas fa-check-circle"></i>
+                <span>Selesai</span>
+            </div>
+            <div class="nav-item" data-page="pengaturan">
+                <i class="fas fa-cog"></i>
+                <span>Pengaturan</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/semua.js"></script>
+    <script src="./js/favorid.js"></script>
+    <script src="./js/selesai.js"></script>
+    <script src="./js/pengaturan.js"></script>
+    <script src="./js/detail.js"></script>
+</body>
+</html>

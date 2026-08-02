@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Semua Bacaan - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <div id="content" class="content-area">
+            <h3 class="page-title">Semua Bacaan</h3>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cari bacaan..." />
+            </div>
+            <div class="filter-group" id="filterGroup"></div>
+            <div id="listContainer"></div>
+        </div>
+        <nav class="bottom-nav glass">
+            <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item active"><i class="fas fa-list"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+        var data = window.READINGS_DATA || [];
+        var filterKategori = 'Semua';
+        var searchQuery = '';
+
+        // ===== DAFTAR KATEGORI YANG TIDAK DITAMPILKAN =====
+        var kategoriDihapus = [
+            'Doa Qolbul Qur\'an',
+            'يَارَبَّنَاعتَرَفنَا',
+            'Sholawat Dengan Niat Hajat'
+        ];
+
+        var categories = ['Semua'];
+        data.forEach(function(item) {
+            // Lewati jika kategori termasuk dalam daftar yang dihapus
+            if (kategoriDihapus.indexOf(item.category) === -1) {
+                if (categories.indexOf(item.category) === -1) {
+                    categories.push(item.category);
+                }
+            }
+        });
+
+        function getFavorit() { return JSON.parse(localStorage.getItem('favorit') || '[]'); }
+        function getSelesai() { return JSON.parse(localStorage.getItem('selesai') || '[]'); }
+
+        function toggleFavorit(id) {
+            var fav = getFavorit();
+            var idx = fav.indexOf(id);
+            if (idx > -1) fav.splice(idx, 1);
+            else fav.push(id);
+            localStorage.setItem('favorit', JSON.stringify(fav));
+            renderList();
+        }
+
+        function toggleSelesai(id) {
+            var done = getSelesai();
+            var idx = done.indexOf(id);
+            if (idx > -1) done.splice(idx, 1);
+            else done.push(id);
+            localStorage.setItem('selesai', JSON.stringify(done));
+            renderList();
+        }
+
+        function openDetail(id) {
+            window.location.href = 'detail.html?id=' + id;
+        }
+
+        function renderFilters() {
+            var container = document.getElementById('filterGroup');
+            var html = '';
+            categories.forEach(function(cat) {
+                var active = filterKategori === cat ? 'active' : '';
+                html += '<button class="filter-chip ' + active + '" data-kategori="' + cat + '">' + cat + '</button>';
+            });
+            container.innerHTML = html;
+
+            container.querySelectorAll('.filter-chip').forEach(function(chip) {
+                chip.addEventListener('click', function() {
+                    filterKategori = this.dataset.kategori;
+                    renderFilters();
+                    renderList();
+                });
+            });
+        }
+
+        function renderList() {
+            var container = document.getElementById('listContainer');
+            var filtered = data.slice();
+
+            if (filterKategori !== 'Semua') {
+                filtered = filtered.filter(function(item) { return item.category === filterKategori; });
+            }
+
+            if (searchQuery.trim()) {
+                var q = searchQuery.toLowerCase().trim();
+                filtered = filtered.filter(function(item) {
+                    return item.title.toLowerCase().indexOf(q) > -1 ||
+                        (item.subtitle && item.subtitle.toLowerCase().indexOf(q) > -1);
+                });
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-search"></i><h4>Tidak ada data</h4><p>Coba ubah kata kunci atau filter</p></div>';
+                return;
+            }
+
+            var favorit = getFavorit();
+            var selesai = getSelesai();
+            var html = '';
+
+            filtered.forEach(function(item) {
+                var isFav = favorit.indexOf(item.id) > -1;
+                var isDone = selesai.indexOf(item.id) > -1;
+                var totalAyat = item.totalVerses || (item.verses ? item.verses.length : 0);
+
+                html += '<div class="item-card" data-id="' + item.id + '" onclick="openDetail(' + item.id + ')">';
+                html += '  <div class="info">';
+                html += '    <h4>' + item.title + '</h4>';
+                html += '    <p>' + item.category + ' · ' + totalAyat + ' ayat</p>';
+                if (item.subtitle) html += '    <p class="subtitle">' + item.subtitle + '</p>';
+                html += '  </div>';
+                html += '  <div class="item-actions">';
+                html += '    <button class="fav-btn ' + (isFav ? 'fav-active' : '') + '" data-id="' + item.id + '" onclick="event.stopPropagation();toggleFavorit(' + item.id + ')">';
+                html += '      <i class="fas fa-heart"></i>';
+                html += '    </button>';
+                html += '    <button class="done-btn ' + (isDone ? 'done-active' : '') + '" data-id="' + item.id + '" onclick="event.stopPropagation();toggleSelesai(' + item.id + ')">';
+                html += '      <i class="fas fa-check-circle"></i>';
+                html += '    </button>';
+                html += '  </div>';
+                html += '</div>';
+            });
+
+            container.innerHTML = html;
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            searchQuery = this.value;
+            renderList();
+        });
+
+        renderFilters();
+        renderList();
+
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+        }
+        setTextSize(localStorage.getItem('textSize') || 'medium');
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // Handle back button
+        window.addEventListener('popstate', function(event) {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                history.back();
+            } else {
+                window.location.href = 'dashboard.html';
+            }
+        });
+        history.pushState(null, '', window.location.href);
+    </script>
+</body>
+</html>

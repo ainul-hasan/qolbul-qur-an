@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Dashboard - Qolbul Qur'an Ainul Hasan</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        <div id="content" class="content-area">
+            <!-- Hero Premium -->
+            <div class="dash-hero">
+                <div class="greeting" id="dayDisplay">Hari ini</div>
+                <h1>Pondok Pesantren Ainul Hasan</h1>
+                <div class="subtitle">Selamat datang di Qolbul Qur'an Ainul Hasan</div>
+                <div class="date-badge">
+                    <i class="fas fa-calendar-alt"></i> <span id="dateDisplay">Memuat...</span>
+                </div>
+            </div>
+
+            <!-- Motivational Quote -->
+            <div class="motivation-card" id="quoteCard">
+                <div class="quote" id="quoteText">" Loading quotes... "</div>
+                <div class="quote-source" id="quoteSource">— </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="dash-stats">
+                <div class="stat-item">
+                    <span class="stat-icon purple"><i class="fas fa-book-quran"></i></span>
+                    <h3 id="totalData">0</h3>
+                    <p>Total Bacaan</p>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon red"><i class="fas fa-heart"></i></span>
+                    <h3 id="totalFav">0</h3>
+                    <p>Favorit</p>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon green"><i class="fas fa-check-circle"></i></span>
+                    <h3 id="totalDone">0</h3>
+                    <p>Selesai</p>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-wrap">
+                <div class="progress-label">
+                    <span><i class="fas fa-chart-line" style="color:#7c3aed;margin-right:8px;"></i> Progress Hafalan</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="progressText">Mulai perjalanan hafalanmu</span>
+                    <span id="progressCount">0 dari 0 bacaan</span>
+                </div>
+            </div>
+
+            <!-- Rekomendasi Bacaan -->
+            <div class="card card-glass" id="rekomendasiContainer">
+                <h4 style="margin-bottom:14px; font-weight:700; font-size:calc(16px * var(--text-size-multiplier)); display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-lightbulb" style="color:#f59e0b;"></i> Rekomendasi Bacaan
+                </h4>
+                <div id="rekomendasiList"></div>
+                <div style="margin-top:12px; text-align:center;">
+                    <button class="lihat-semua-btn" onclick="window.location.href='semua.html'">Lihat Semua Bacaan</button>
+                </div>
+            </div>
+
+            <!-- Favorit Teratas -->
+            <div class="card card-glass" id="favoritContainer">
+                <h4 style="margin-bottom:14px; font-weight:700; font-size:calc(16px * var(--text-size-multiplier)); display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-heart" style="color:#ef4444;"></i> Favorit Teratas
+                </h4>
+                <div id="favoritList"></div>
+                <div style="margin-top:12px; text-align:center;">
+                    <button class="lihat-semua-btn" onclick="window.location.href='favorid.html'">Lihat Semua Favorit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass">
+            <a href="dashboard.html" class="nav-item active"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item"><i class="fas fa-list"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+        var data = window.READINGS_DATA || [];
+        var favorit = JSON.parse(localStorage.getItem('favorit') || '[]');
+        var selesai = JSON.parse(localStorage.getItem('selesai') || '[]');
+
+        // Stats
+        var total = data.length;
+        var totalFav = favorit.length;
+        var totalDone = selesai.length;
+        var progress = total > 0 ? Math.round((totalDone / total) * 100) : 0;
+
+        document.getElementById('totalData').textContent = total;
+        document.getElementById('totalFav').textContent = totalFav;
+        document.getElementById('totalDone').textContent = totalDone;
+
+        // Progress
+        document.getElementById('progressPercent').textContent = progress + '%';
+        document.getElementById('progressFill').style.width = progress + '%';
+
+        var progressText = '';
+        if (progress === 0) progressText = 'Mulai perjalanan hafalanmu';
+        else if (progress < 30) progressText = 'Semangat, teruskan!';
+        else if (progress < 60) progressText = 'Bagus, kamu hebat!';
+        else if (progress < 90) progressText = 'Hampir selesai!';
+        else progressText = 'Luar biasa!';
+
+        document.getElementById('progressText').textContent = progressText;
+        document.getElementById('progressCount').textContent = totalDone + ' dari ' + total + ' bacaan';
+
+        // Date
+        var now = new Date();
+        var hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        document.getElementById('dayDisplay').textContent = hari[now.getDay()];
+
+        // ============================================
+        // AMBIL TANGGAL HIJRIAH DARI API MYQURAN
+        // ============================================
+        function updateHijriDate() {
+            var now = new Date();
+            var masehi = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            
+            // Tampilkan dulu "Memuat..."
+            document.getElementById('dateDisplay').textContent = masehi + ' · Memuat...';
+            
+            // Cek cache dulu
+            var cachedHijri = localStorage.getItem('hijriDate');
+            var cachedDate = localStorage.getItem('hijriDateCached');
+            var today = now.toDateString();
+            
+            if (cachedHijri && cachedDate === today) {
+                document.getElementById('dateDisplay').textContent = masehi + ' · ' + cachedHijri;
+                return;
+            }
+            
+            // Ambil dari API myQuran
+            var url = 'https://api.myquran.com/v3/cal/today';
+            
+            fetch(url)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Network error');
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    console.log('[Hijri] API Response:', data);
+                    
+                    if (data && data.status && data.data && data.data.hijr) {
+                        var h = data.data.hijr;
+                        var hijri = h.today || (h.day + ' ' + h.monthName + ' ' + h.year + ' H');
+                        
+                        // Simpan ke localStorage (cache)
+                        localStorage.setItem('hijriDate', hijri);
+                        localStorage.setItem('hijriDateCached', today);
+                        
+                        document.getElementById('dateDisplay').textContent = masehi + ' · ' + hijri;
+                    } else {
+                        throw new Error('Invalid data');
+                    }
+                })
+                .catch(function(error) {
+                    console.log('[Hijri] Error:', error);
+                    // Cek cache lagi (fallback)
+                    var cachedHijri = localStorage.getItem('hijriDate');
+                    var cachedDate = localStorage.getItem('hijriDateCached');
+                    
+                    if (cachedHijri && cachedDate === today) {
+                        document.getElementById('dateDisplay').textContent = masehi + ' · ' + cachedHijri;
+                    } else {
+                        // Hardcode fallback
+                        document.getElementById('dateDisplay').textContent = masehi + ' · 19 Safar 1448 H';
+                    }
+                });
+        }
+
+        updateHijriDate();
+
+        // Quotes
+        var quotes = [
+            { text: "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya", source: "HR. Bukhari" },
+            { text: "Bacalah Al-Qur'an, karena ia akan datang pada hari kiamat sebagai pemberi syafaat", source: "HR. Muslim" },
+            { text: "Barang siapa yang membaca satu huruf dari Al-Qur'an maka baginya satu kebaikan", source: "HR. Tirmidzi" },
+            { text: "Al-Qur'an adalah obat bagi hati yang gelisah dan penyejuk jiwa yang rindu", source: "-" },
+            { text: "Jadikanlah Al-Qur'an sebagai teman terbaik dalam perjalanan hidupmu", source: "-" }
+        ];
+        var randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('quoteText').textContent = '" ' + randomQuote.text + ' "';
+        document.getElementById('quoteSource').textContent = '— ' + randomQuote.source;
+
+        // Rekomendasi
+        var belumSelesai = data.filter(function(item) {
+            return selesai.indexOf(item.id) === -1;
+        });
+
+        var rekomendasi = [];
+        if (belumSelesai.length > 0) {
+            var shuffled = belumSelesai.slice();
+            for (var i = shuffled.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = shuffled[i];
+                shuffled[i] = shuffled[j];
+                shuffled[j] = temp;
+            }
+            rekomendasi = shuffled.slice(0, 4);
+        }
+
+        var rekomendasiContainer = document.getElementById('rekomendasiList');
+        if (rekomendasi.length > 0) {
+            var rekomHtml = '';
+            rekomendasi.forEach(function(item) {
+                var totalAyat = item.totalVerses || (item.verses ? item.verses.length : 0);
+                rekomHtml += '<div class="rekomendasi-item" onclick="window.location.href=\'detail.html?id=' + item.id + '\'">';
+                rekomHtml += '  <div class="rekomendasi-info">';
+                rekomHtml += '    <div class="rekomendasi-title">' + item.title + '</div>';
+                rekomHtml += '    <div class="rekomendasi-meta">' + item.category + ' · ' + totalAyat + ' ayat</div>';
+                rekomHtml += '  </div>';
+                rekomHtml += '  <div class="rekomendasi-action">';
+                rekomHtml += '    <button class="rekomendasi-btn"><i class="fas fa-arrow-right"></i></button>';
+                rekomHtml += '  </div>';
+                rekomHtml += '</div>';
+            });
+            rekomendasiContainer.innerHTML = rekomHtml;
+        } else {
+            rekomendasiContainer.innerHTML = '<div style="text-align:center;padding:20px 0;color:var(--text-secondary);">Semua bacaan sudah selesai</div>';
+        }
+
+        // Favorit
+        var favoritData = data.filter(function(item) {
+            return favorit.indexOf(item.id) > -1;
+        });
+
+        var favoritContainer = document.getElementById('favoritList');
+        if (favoritData.length > 0) {
+            var favHtml = '';
+            var topFavorit = favoritData.slice(0, 3);
+            topFavorit.forEach(function(item) {
+                var totalAyat = item.totalVerses || (item.verses ? item.verses.length : 0);
+                favHtml += '<div class="favorit-item" onclick="window.location.href=\'detail.html?id=' + item.id + '\'">';
+                favHtml += '  <div class="favorit-info">';
+                favHtml += '    <div class="favorit-title">' + item.title + '</div>';
+                favHtml += '    <div class="favorit-meta">' + item.category + ' · ' + totalAyat + ' ayat</div>';
+                favHtml += '  </div>';
+                favHtml += '  <div class="favorit-action">';
+                favHtml += '    <button class="favorit-btn"><i class="fas fa-book-open"></i></button>';
+                favHtml += '  </div>';
+                favHtml += '</div>';
+            });
+            favoritContainer.innerHTML = favHtml;
+        } else {
+            favoritContainer.innerHTML = '<div style="text-align:center;padding:20px 0;color:var(--text-secondary);">Belum ada bacaan favorit</div>';
+        }
+
+        // Theme & Text Size
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+        }
+        setTextSize(localStorage.getItem('textSize') || 'medium');
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    </script>
+</body>
+</html>

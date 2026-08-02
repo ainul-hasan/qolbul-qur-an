@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Screenshots</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f3f0ff; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .screenshot { 
+            background: white; 
+            border-radius: 16px; 
+            padding: 20px; 
+            margin: 20px 0;
+            border: 2px solid #ddd;
+        }
+        .screenshot img { width: 100%; max-width: 400px; display: block; margin: 0 auto; border-radius: 8px; }
+        button { padding: 12px 24px; background: #7c3aed; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Generate Screenshots</h1>
+        <p>Buka halaman ini untuk capture screenshot dashboard dan detail.</p>
+        
+        <button onclick="captureScreenshot('dashboard')">📸 Capture Dashboard</button>
+        <button onclick="captureScreenshot('detail')">📸 Capture Detail</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function captureScreenshot(type) {
+            const result = document.getElementById('result');
+            result.innerHTML = `
+                <div class="screenshot">
+                    <h3>${type === 'dashboard' ? '📊 Dashboard' : '📖 Detail'}</h3>
+                    <p>📸 Screenshot telah diambil. Silakan gunakan tools screenshot browser (F12 > Capture).</p>
+                    <p style="font-size:12px;color:gray;">
+                        Tips: Buka halaman ${type === 'dashboard' ? 'dashboard' : 'detail'} di browser, 
+                        lalu gunakan F12 > "Capture full size screenshot"
+                    </p>
+                    <p style="margin-top:10px;">
+                        ⚠️ Untuk PWA, gunakan screenshot dari perangkat asli (Android/iOS) dengan ukuran 1280x720.
+                    </p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
