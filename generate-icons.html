@@ -3,94 +3,240 @@
 <head>
     <title>Generate Icons Qolbul Qur'an</title>
     <style>
-        body { font-family: Arial; padding: 20px; background: #f3f0ff; }
-        .container { max-width: 600px; margin: 0 auto; }
-        button { padding: 12px 24px; background: #7c3aed; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        body { font-family: 'Inter', Arial, sans-serif; padding: 20px; background: #f3f0ff; }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { color: #1e1b4b; }
+        p { color: #4b5563; }
+        button { 
+            padding: 14px 28px; 
+            background: linear-gradient(135deg, #7c3aed, #4f46e5); 
+            color: white; 
+            border: none; 
+            border-radius: 40px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 600;
+            margin: 5px 10px 5px 0;
+            box-shadow: 0 4px 12px rgba(124,58,237,0.3);
+            transition: 0.2s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.4); }
+        button:active { transform: scale(0.95); }
+        button.secondary { background: #e5e7eb; color: #1e1b4b; box-shadow: none; }
+        button.secondary:hover { background: #d1d5db; }
         .result { margin-top: 20px; }
-        .icon-preview { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-        .icon-item { text-align: center; background: white; padding: 10px; border-radius: 8px; border: 1px solid #ddd; }
-        img { display: block; margin: 0 auto; }
+        .icon-preview { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            margin: 20px 0; 
+            justify-content: center;
+        }
+        .icon-item { 
+            text-align: center; 
+            background: white; 
+            padding: 12px; 
+            border-radius: 12px; 
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            width: 90px;
+        }
+        .icon-item img { display: block; margin: 0 auto 8px auto; border-radius: 8px; }
+        .icon-item div { font-size: 12px; color: #4b5563; font-weight: 600; }
         .download-all { margin-top: 20px; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1b4b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 999;
+        }
+        .toast.show { display: block; animation: fadeSlide 0.3s ease; }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
     </style>
+    <!-- Load JSZip for ZIP download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>🕌 Generate Icons Qolbul Qur'an</h1>
         <p>Klik tombol di bawah untuk generate semua icon yang dibutuhkan untuk PWA.</p>
-        <button onclick="generateIcons()">Generate All Icons</button>
-        <div class="result" id="result"></div>
+        
+        <div>
+            <button onclick="generateIcons()">🚀 Generate & Download Semua</button>
+            <button class="secondary" onclick="downloadAllAsZip()">📦 Download All as ZIP</button>
+        </div>
+        
+        <div class="result" id="result">
+            <p style="color: #9ca3af; font-style: italic;">Klik tombol di atas untuk memulai...</p>
+        </div>
     </div>
 
+    <div class="toast" id="toast"></div>
+
     <script>
+        // =============================================
+        // 1. FUNGSI GENERATE ICON PER UKURAN
+        // =============================================
+        function generateIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Background Gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#7c3aed');
+            gradient.addColorStop(0.5, '#4f46e5');
+            gradient.addColorStop(1, '#6366f1');
+            ctx.fillStyle = gradient;
+            if (ctx.roundRect) {
+                ctx.roundRect(0, 0, size, size, size * 0.15);
+                ctx.fill();
+            } else {
+                ctx.fillRect(0, 0, size, size);
+            }
+
+            // Circle border
+            ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+            ctx.lineWidth = size * 0.02;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size * 0.42, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Emoji/Text (📖)
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const fontSize = size * 0.45;
+            ctx.font = fontSize + 'px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
+            ctx.fillText('📖', size/2, size/2 + size * 0.02);
+
+            // Small text "Qolbul"
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.font = size * 0.06 + 'px Arial';
+            ctx.fillText('Qolbul', size/2, size * 0.85);
+
+            return canvas.toDataURL('image/png');
+        }
+
+        // =============================================
+        // 2. GENERATE & DOWNLOAD SATU PER SATU (FIX)
+        // =============================================
         function generateIcons() {
             const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
             const container = document.getElementById('result');
-            container.innerHTML = '<p>⏳ Generating icons...</p>';
+            container.innerHTML = '<p>⏳ Generating icons... (Proses download akan berjalan bertahap)</p>';
             
             let html = '<div class="icon-preview">';
             let count = 0;
 
+            // Kumpulkan semua data URL
+            const iconData = [];
             sizes.forEach(size => {
-                const canvas = document.createElement('canvas');
-                canvas.width = size;
-                canvas.height = size;
-                const ctx = canvas.getContext('2d');
+                const dataUrl = generateIcon(size);
+                iconData.push({ size, dataUrl });
+            });
 
-                // Background
-                const gradient = ctx.createLinearGradient(0, 0, size, size);
-                gradient.addColorStop(0, '#7c3aed');
-                gradient.addColorStop(0.5, '#4f46e5');
-                gradient.addColorStop(1, '#6366f1');
-                ctx.fillStyle = gradient;
-                ctx.roundRect(0, 0, size, size, size * 0.15);
-                ctx.fill();
-
-                // Circle border
-                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-                ctx.lineWidth = size * 0.02;
-                ctx.beginPath();
-                ctx.arc(size/2, size/2, size * 0.42, 0, Math.PI * 2);
-                ctx.stroke();
-
-                // Emoji/Text
-                ctx.fillStyle = 'white';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                
-                const fontSize = size * 0.45;
-                ctx.font = fontSize + 'px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
-                ctx.fillText('📖', size/2, size/2 + size * 0.02);
-
-                // Small text
-                ctx.fillStyle = 'rgba(255,255,255,0.3)';
-                ctx.font = size * 0.06 + 'px Arial';
-                ctx.fillText('Qolbul', size/2, size * 0.85);
-
-                // Download
-                const link = document.createElement('a');
-                link.download = `icon-${size}x${size}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-
-                // Preview
+            // Tampilkan preview dulu
+            iconData.forEach(({ size, dataUrl }) => {
                 html += `
                     <div class="icon-item">
-                        <img src="${canvas.toDataURL('image/png')}" width="${Math.min(size, 64)}" height="${Math.min(size, 64)}" />
+                        <img src="${dataUrl}" width="${Math.min(size, 64)}" height="${Math.min(size, 64)}" />
                         <div>${size}x${size}</div>
                     </div>
                 `;
+            });
+            html += '</div>';
+            html += `<p>✅ ${iconData.length} icons berhasil digenerate!</p>`;
+            html += `<p class="download-all">📁 <strong>Catatan:</strong> File akan didownload satu per satu secara otomatis di bawah.</p>`;
+            container.innerHTML = html;
 
-                count++;
+            // DOWNLOAD BERTAHAP (FIX UNTUK MULTIPLE DOWNLOAD)
+            showToast('Memulai download ' + iconData.length + ' file...');
+            let delay = 500; // jeda 500ms antar download
+            iconData.forEach(({ size, dataUrl }, index) => {
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.download = `${size}x${size}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Update toast
+                    showToast(`Downloading ${size}x${size}.png (${index + 1}/${iconData.length})`);
+                }, delay * index);
             });
 
-            html += '</div>';
-            html += `<p>✅ ${count} icons generated and downloaded!</p>`;
-            html += `<p class="download-all">📁 Semua icon sudah didownload otomatis. Pindahkan ke folder <strong>icons/</strong></p>`;
-            
-            container.innerHTML = html;
+            // Simpan data untuk ZIP
+            window._iconData = iconData;
         }
 
-        // Polyfill for roundRect if not available
+        // =============================================
+        // 3. DOWNLOAD ALL AS ZIP (Tambahan Fitur)
+        // =============================================
+        async function downloadAllAsZip() {
+            if (!window._iconData || window._iconData.length === 0) {
+                showToast('⚠️ Generate icons dulu dengan tombol pertama!');
+                return;
+            }
+
+            showToast('📦 Membuat file ZIP...');
+            const zip = new JSZip();
+            const folder = zip.folder('icons');
+
+            window._iconData.forEach(({ size, dataUrl }) => {
+                // Convert data URL to blob
+                const byteString = atob(dataUrl.split(',')[1]);
+                const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                const blob = new Blob([ab], { type: mimeString });
+                folder.file(`${size}x${size}.png`, blob);
+            });
+
+            const content = await zip.generateAsync({ type: 'blob' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = 'qolbul-quran-icons.zip';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+
+            showToast('✅ ZIP berhasil didownload!');
+        }
+
+        // =============================================
+        // 4. TOAST NOTIFICATION
+        // =============================================
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // =============================================
+        // 5. POLYFILL roundRect
+        // =============================================
         if (!CanvasRenderingContext2D.prototype.roundRect) {
             CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
                 if (r > w/2) r = w/2;
