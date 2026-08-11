@@ -4,69 +4,69 @@
 
 window.READINGS_DATA = [
     {
-        id: 1,
+id: 1,
         title: "Tawasul",
         subtitle: "Tawasul",
         verses: [
             {
-              arabic: "إِلَى حَضْرَةِ نَبِيِّ الْمُصْطَفَى سَيِّدِنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ",
-              latin: "Ilā ḥaḍratin Nabiyyil Muṣṭafā Sayyidinā Muḥammad ṣallallāhu ‘alaihi wa sallam",
-              translation: "Kepada hadirat Nabi pilihan, junjungan kami Nabi Muhammad saw."
+              arabic: " لِرِ ضَاءِ اللّٰهِ تَعَلَى وَبِشَفَا عَةِ رَسُولِ اللّٰهِ صَلَّ اللّٰهِ عَلَيْهِ وَسَلَّم",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ سُلْطَانِ الْأَوْلِيَاءِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجِيلَانِيِّ",
-              latin: "Ilā ḥaḍrati Sulṭānil Auliyā’ Asy-Syaikh ‘Abdil Qādir Al-Jailānī",
-              translation: "Kepada hadirat Sultan para wali, Syekh Abdul Qadir Al-Jailani."
+              arabic: "ثُمَّّ اِلَى حَضْرَةٍ سُلَّطَانُ اْلأَوْلِيَاء اَلشَّيْخٌ عَبْدُ اْلقَا دِيْرِ اْلجَيْلَانِى",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي مُحَمَّدٍ خَلِيلٍ بَنْكَالَان",
-              latin: "Ilā ḥaḍrati Kiai Muḥammad Khalīl Bangkalan",
-              translation: "Kepada hadirat Kiai Muhammad Khalil Bangkalan."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ مُحَمَّدْ خَلِيْل بَغْكَا لَانْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي مُحَمَّدٍ حَسَنٍ",
-              latin: "Ilā ḥaḍrati Kiai Muḥammad Ḥasan",
-              translation: "Kepada hadirat Kiai Muhammad Hasan."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ نَوَا وِي بَا نْتَانْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي مُحَمَّدٍ حَسَنٍ سَيْفُ الرِّجَالِ",
-              latin: "Ilā ḥaḍrati Kiai Muḥammad Ḥasan Saifur Rijāl",
-              translation: "Kepada hadirat Kiai Muhammad Hasan Saifur Rijal."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ مُحَمَّدْ حَسَنْ كِغْكُوغْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةٍ كِيَاهِي نَوَوِي بَانْتَن",
-              latin: "Ilā ḥaḍrati Kiai Nuawwi Banten",
-              translation: "Kepada hadirat Kiai Nuawwi Banten."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ حَسَنْ سَيْفُ الرِّجَالْ كِغْكُوغْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي هَاشِم فُلُوطَان",
-              latin: "Ilā ḥaḍrati Kiai Hāsyim pulotan",
-              translation: "Kepada hadirat Kiai Hasyim pulotan."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ هَاشِمْ فُوْ لُوْتَنْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي شَمْسُ الْعَارِفِينَ فُلُوطَان",
-              latin: "Ilā ḥaḍrati Kiai Syamsul ‘Ārifīn pulotan",
-              translation: "Kepada hadirat Kiai Syamsul Arifin pulotan."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ شَمْسُ اْلعَارِفِيْنْ فُوْ لُوْتَنْ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي سُدِيب بَحرُ اللَّهِ وُونُورِيجُو",
-              latin: "Ilā ḥaḍrati Kiai Sudib Barullāh Wonorejo",
-              translation: "Kepada hadirat Kiai Sudib Barullah Wonorejo."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ سُوْ دِيْب بَحْرُ اللّٰه وُوْنُورْجَا",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ كِيَاهِي أَحْسَن بَحْرُ الْعُلُوم بِنْ أَمْبَاهْ جَوَارِي بِنْ سَمُدَن بِنْ رُومُو سَطْرُو بِنْ بُيُوتْ مَارِين بِنْ بُيُوتْ مُوسَى",
-              latin: "Ilā ḥaḍrati Kiai Aḥsan Baḥrul ‘Ulūm bin Mbah Jawārī bin Samdūn bin Romo Satro bin Buyut Marina bin Buyut Mūsā",
-              translation: "Kepada hadirat Mbah Jawari bin Samdun bin Romo Satro bin Buyut Marina bin Buyut Musa."
+              arabic: "وَ اِلَى حَضْرَةٍ كَيَاهِى اْلحَاجِ أَحْسَن بَحْرُ الْعُلُوم بِنْ أَمْبَاهْ جَوَارِي بِنْ سَمُدَن بِنْ رُومُو سَطْرُو بِنْ بُيُوتْ مَارِين بِنْ بُيُوتْ مُوسَى",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ يَاهِى خَيْرُ الْعُزَّة بِنْتِ كِيَاهِي مَعَلِي بِنْ شَمْسُ الدِّينِ",
-              latin: "Ilā ḥaḍrati Yāhī Khairul Uzah binti Kiai Ma‘li bin Syamsuddīn",
-              translation: "Kepada hadirat Yahi Khairul Uzah binti Kiai Ma'li bin Syamsuddin."
+              arabic: "وَ اِلَى حَضْرَةٍ يَاهِِي خَيْرُ الْاُنْزَاه بِنْتِ كِيَاهِي مَعَالِي بِنْ شَمْسُ الدِّينِ",
+              latin: "",
+              translation: ""
             },
             {
-              arabic: "إِلَى حَضْرَةِ مَنْ أَجَازَنِي كِيَاهِي أَحْسَن بَحْرُ الْعُلُوم الْبُدِي",
-              latin: "Ilā ḥaḍrati Man Ajāzanī Kiai Aḥsan Baḥrul Budī",
-              translation: "Kepada hadirat guru yang telah mengijazahkan saya, Kiai Ahsan Bahrul Budi."
+              arabic: " وَإِلَى حَضْرَةٍ مَنْ أَجَازَنِي كِيَاهِي اْلحَاجِ أَحْسَن بَحْرُ الْعُلُوم الْبُدِي",
+              latin: "",
+              translation: ""
             },
 
         ],
