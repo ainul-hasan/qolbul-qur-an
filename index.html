@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Qolbul Qur'an - Pondok Pesantren Ainul Hasan</title>
+    
+    <!-- PWA META TAGS -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f766e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Qolbul Qur'an">
+    <link rel="apple-touch-icon" href="./icons/128x128.png">
+    
+    <!-- FONTS & ICONS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <!-- SERVICE WORKER -->
+    <script>
+        if (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('./sw.js', { scope: './' })
+                        .then(function(r) { console.log('[PWA] SW registered:', r.scope); })
+                        .catch(function(e) { console.log('[PWA] SW failed:', e); });
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="app" class="app-container">
+        
+        <!-- TOP APP BAR -->
+        <header class="top-appbar" id="topAppbar">
+            <div class="brand">
+                <div class="brand-logo" id="appbarLogo">
+                    <img src="./icons/128x128.png" alt="Logo Qolbul Qur'an" />
+                </div>
+                <div class="brand-text">
+                    <h1 id="appbarTitle">Qolbul Qur'an</h1>
+                    <p id="appbarSubtitle">Pondok Pesantren Ainul Hasan</p>
+                </div>
+            </div>
+            <div class="appbar-actions">
+                <button class="icon-btn" id="themeToggleTop" type="button" aria-label="Ganti Tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- KONTEN DINAMIS -->
+        <div id="content" class="content-area"></div>
+        
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav" id="bottomNav">
+            <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#semua" class="nav-item" data-page="semua">
+                <i class="fas fa-book-open"></i>
+                <span>Semua</span>
+            </a>
+            <a href="#favorid" class="nav-item" data-page="favorid">
+                <i class="fas fa-heart"></i>
+                <span>Favorit</span>
+            </a>
+            <a href="#selesai" class="nav-item" data-page="selesai">
+                <i class="fas fa-check-circle"></i>
+                <span>Selesai</span>
+            </a>
+            <a href="#pengaturan" class="nav-item" data-page="pengaturan">
+                <i class="fas fa-cog"></i>
+                <span>Atur</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./js/data.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/semua.js"></script>
+    <script src="./js/favorid.js"></script>
+    <script src="./js/selesai.js"></script>
+    <script src="./js/pengaturan.js"></script>
+    <script src="./js/detail.js"></script>
+
+    <!-- ============================================
+         PATCH: TOP APPBAR + NAVIGATION + TEXT SIZE
+         ============================================ -->
+    <script>
+    (function() {
+        'use strict';
+        console.log('[Patch v1.2] Loading...');
+
+        // ============================================
+        // 1. FORCE APPLY TEXT SIZE
+        // ============================================
+        function applyTextSize() {
+            var size = localStorage.getItem('textSize') || 'medium';
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') {
+                document.body.classList.add('text-' + size);
+            }
+            console.log('[Patch] Text size applied:', size);
+        }
+
+        applyTextSize();
+
+        window.setTextSize = function(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') {
+                document.body.classList.add('text-' + size);
+            }
+            localStorage.setItem('textSize', size);
+            console.log('[Patch] Text size changed to:', size);
+        };
+
+        // ============================================
+        // 2. PAGE CONFIG
+        // ============================================
+        var PAGE_CONFIG = {
+            'dashboard': { title: "Qolbul Qur'an", subtitle: 'Pondok Pesantren Ainul Hasan' },
+            'semua': { title: 'Semua Bacaan', subtitle: 'Koleksi lengkap bacaan' },
+            'favorid': { title: 'Favorit', subtitle: 'Bacaan pilihanmu' },
+            'selesai': { title: 'Selesai', subtitle: 'Bacaan yang sudah dihafal' },
+            'pengaturan': { title: 'Pengaturan', subtitle: 'Sesuaikan aplikasi' },
+            'detail': { title: 'Detail Bacaan', subtitle: 'Baca dan hafalkan' }
+        };
+
+        // ============================================
+        // 3. UPDATE TOP APPBAR (Logo TIDAK diubah)
+        // ============================================
+        function updateAppbar(page, extraData) {
+            var config = PAGE_CONFIG[page] || PAGE_CONFIG['dashboard'];
+            var titleEl = document.getElementById('appbarTitle');
+            var subtitleEl = document.getElementById('appbarSubtitle');
+
+            if (titleEl) titleEl.textContent = config.title;
+            if (subtitleEl) subtitleEl.textContent = config.subtitle;
+
+            // Kalau di halaman detail, tampilkan judul bacaan
+            if (page === 'detail' && extraData) {
+                var data = window.READINGS_DATA || [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].id === extraData) {
+                        var item = data[i];
+                        if (titleEl) titleEl.textContent = item.title;
+                        var count = item.totalVerses || (item.verses ? item.verses.length : 0);
+                        if (subtitleEl) subtitleEl.textContent = (item.category || 'Bacaan') + ' · ' + count + ' ayat';
+                        break;
+                    }
+                }
+            }
+        }
+
+        // ============================================
+        // 4. THEME TOGGLE
+        // ============================================
+        function initThemeToggle() {
+            var btn = document.getElementById('themeToggleTop');
+            if (!btn) return;
+            function updateIcon() {
+                var isDark = document.body.classList.contains('dark');
+                btn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            }
+            updateIcon();
+            var newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            newBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var isDark = document.body.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                updateIcon();
+                var settingToggle = document.getElementById('themeToggle');
+                if (settingToggle) settingToggle.classList.toggle('active', isDark);
+            });
+        }
+
+        // ============================================
+        // 5. PATCH NAVIGATE TO
+        // ============================================
+        function patchNavigateTo() {
+            if (typeof window.navigateTo !== 'function') return false;
+            if (window.navigateTo.__patched) return true;
+            var original = window.navigateTo;
+            window.navigateTo = function(page, data) {
+                updateAppbar(page, data);
+                original.call(this, page, data);
+                document.querySelectorAll('.nav-item').forEach(function(el) { el.classList.remove('active'); });
+                var activeNav = document.querySelector('.nav-item[data-page="' + page + '"]');
+                if (activeNav) activeNav.classList.add('active');
+            };
+            window.navigateTo.__patched = true;
+            console.log('[Patch] navigateTo patched');
+            return true;
+        }
+
+        // ============================================
+        // 6. FIX NAV CLICKS
+        // ============================================
+        function fixNavClicks() {
+            document.querySelectorAll('.nav-item').forEach(function(item) {
+                var clone = item.cloneNode(true);
+                item.parentNode.replaceChild(clone, item);
+                clone.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var page = this.getAttribute('data-page') || (this.getAttribute('href') || '').replace('#', '');
+                    if (page && typeof window.navigateTo === 'function') window.navigateTo(page);
+                });
+            });
+        }
+
+        // ============================================
+        // 7. INIT
+        // ============================================
+        function init() {
+            console.log('[Patch] Initializing...');
+            fixNavClicks();
+            initThemeToggle();
+            
+            var attempts = 0;
+            var interval = setInterval(function() {
+                attempts++;
+                if (patchNavigateTo()) {
+                    clearInterval(interval);
+                    console.log('[Patch] Ready in ' + attempts + ' attempts');
+                    var initialPage = window.currentPage || 'dashboard';
+                    updateAppbar(initialPage);
+                    setTimeout(fixNavClicks, 500);
+                }
+                if (attempts > 40) {
+                    clearInterval(interval);
+                    console.warn('[Patch] navigateTo not found');
+                }
+            }, 50);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        // ============================================
+        // 8. DEBUG HELPER
+        // ============================================
+        window.__debug = {
+            status: function() {
+                return {
+                    navigateToExists: typeof window.navigateTo === 'function',
+                    navigateToPatched: !!(window.navigateTo && window.navigateTo.__patched),
+                    currentPage: window.currentPage,
+                    totalData: window.READINGS_DATA ? window.READINGS_DATA.length : 0,
+                    textSize: localStorage.getItem('textSize') || 'medium',
+                    bodyClass: document.body.className
+                };
+            },
+            testSize: function(size) {
+                window.setTextSize(size);
+                console.log('Text size set to:', size);
+            }
+        };
+        console.log('[Patch] Loaded. Cek: window.__debug.status()');
+    })();
+    </script>
+</body>
+</html>

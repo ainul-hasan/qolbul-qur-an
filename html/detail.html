@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Detail - Qolbul Qur'an</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+    <div id="app" class="app-container">
+        
+        <!-- TOP APP BAR -->
+        <header class="top-appbar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <i class="fas fa-book-quran"></i>
+                </div>
+                <div class="brand-text">
+                    <h1 id="appbarTitle">Detail Bacaan</h1>
+                    <p id="appbarSubtitle">Baca dan hafalkan</p>
+                </div>
+            </div>
+            <div class="appbar-actions">
+                <button class="icon-btn" id="themeToggleTop" aria-label="Ganti Tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="content" class="content-area"></div>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+            <a href="semua.html" class="nav-item"><i class="fas fa-book-open"></i><span>Semua</span></a>
+            <a href="favorid.html" class="nav-item"><i class="fas fa-heart"></i><span>Favorit</span></a>
+            <a href="selesai.html" class="nav-item"><i class="fas fa-check-circle"></i><span>Selesai</span></a>
+            <a href="pengaturan.html" class="nav-item"><i class="fas fa-cog"></i><span>Atur</span></a>
+        </nav>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/detail.js"></script>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = parseInt(urlParams.get('id'));
+        var container = document.getElementById('content');
+
+        // Ambil data untuk update title
+        var item = null;
+        if (window.READINGS_DATA) {
+            for (var i = 0; i < window.READINGS_DATA.length; i++) {
+                if (window.READINGS_DATA[i].id === id) {
+                    item = window.READINGS_DATA[i];
+                    break;
+                }
+            }
+        }
+        if (item) {
+            document.getElementById('appbarTitle').textContent = item.title;
+            document.getElementById('appbarSubtitle').textContent = (item.category || 'Bacaan') + ' · ' + (item.totalVerses || (item.verses ? item.verses.length : 0)) + ' ayat';
+        }
+
+        if (typeof renderDetail === 'function') {
+            renderDetail(container, id);
+        } else {
+            var verses = item ? (item.verses || []) : [];
+            var html = '';
+            html += '<div class="detail-page">';
+            html += '  <div class="detail-header">';
+            html += '    <button class="back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>';
+            html += '    <div class="title-section">';
+            html += '      <h2>' + (item ? item.title : 'Tidak ditemukan') + '</h2>';
+            html += '      <p>' + (item ? item.category : '') + ' · ' + verses.length + ' ayat</p>';
+            html += '    </div>';
+            html += '  </div>';
+            verses.forEach(function(verse, index) {
+                html += '  <div class="verse-item">';
+                html += '    <div class="verse-number">' + (index + 1) + '</div>';
+                if (verse.arabic) html += '    <div class="arabic">' + verse.arabic + '</div>';
+                if (verse.latin) html += '    <div class="latin">' + verse.latin + '</div>';
+                if (verse.translation) html += '    <div class="translation">' + verse.translation + '</div>';
+                html += '  </div>';
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function setTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size !== 'medium') document.body.classList.add('text-' + size);
+        }
+        setTextSize(localStorage.getItem('textSize') || 'medium');
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // Theme toggle
+        var themeToggleTop = document.getElementById('themeToggleTop');
+        function updateThemeIcon() {
+            var isDark = document.body.classList.contains('dark');
+            themeToggleTop.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        updateThemeIcon();
+        themeToggleTop.addEventListener('click', function() {
+            var isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        });
+
+        // Apply latin/translation visibility
+        if (localStorage.getItem('showLatin') === 'false') document.body.classList.add('hide-latin');
+        if (localStorage.getItem('showTranslation') === 'false') document.body.classList.add('hide-translation');
+    </script>
+</body>
+</html>
