@@ -2706,3 +2706,336 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
         font-size: calc(28px * var(--text-size-multiplier)) !important;
     }
 }
+/* ============================================
+   HILANGKAN BADGE "Ayat X"
+   ============================================ */
+.verse-number {
+    display: none !important;
+}
+
+/* ============================================
+   FIX UKURAN TEKS ARAB
+   ============================================ */
+body.text-small   { --text-size-multiplier: 0.85 !important; }
+body.text-medium  { --text-size-multiplier: 1 !important; }
+body.text-large   { --text-size-multiplier: 1.2 !important; }
+body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
+
+.verse-item .arabic,
+.verse .arabic {
+    font-size: calc(24px * var(--text-size-multiplier)) !important;
+    line-height: calc(1.9 * var(--text-size-multiplier)) !important;
+}
+
+.verse-item .latin,
+.verse .latin {
+    font-size: calc(14px * var(--text-size-multiplier)) !important;
+    line-height: calc(1.7 * var(--text-size-multiplier)) !important;
+}
+
+.verse-item .translation,
+.verse .translation {
+    font-size: calc(14px * var(--text-size-multiplier)) !important;
+    line-height: calc(1.75 * var(--text-size-multiplier)) !important;
+}
+
+@media (max-width: 400px) {
+    .verse-item .arabic {
+        font-size: calc(20px * var(--text-size-multiplier)) !important;
+    }
+}
+
+@media (min-width: 481px) {
+    .verse-item .arabic {
+        font-size: calc(28px * var(--text-size-multiplier)) !important;
+    }
+}
+
+/* ============================================
+   TOMBOL INSTALL DI TOP APPBAR
+   ============================================ */
+.install-btn {
+    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%) !important;
+    color: white !important;
+    border-color: transparent !important;
+    animation: pulse-install 2s ease-in-out infinite;
+    position: relative;
+}
+
+.install-btn::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 2px solid var(--nav-bg);
+    animation: blink-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-install {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes blink-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ============================================
+   BANNER INSTALL
+   ============================================ */
+.install-banner {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    width: calc(100% - 32px);
+    max-width: 480px;
+    background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(15, 118, 110, 0.4);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 14px 16px;
+}
+
+.install-banner.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.install-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.install-banner-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.install-banner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.install-banner-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.install-banner-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    margin-bottom: 2px;
+}
+
+.install-banner-sub {
+    font-size: 11px;
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+.install-banner-btn {
+    background: #fbbf24;
+    color: #78350f;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+}
+
+.install-banner-btn:active {
+    transform: scale(0.94);
+}
+
+.install-banner-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.install-banner-close:active {
+    transform: scale(0.9);
+}
+
+/* ============================================
+   MODAL INSTRUKSI INSTALL
+   ============================================ */
+.install-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.install-modal {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 28px 24px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border: 1px solid var(--border-color);
+    animation: slideUpModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUpModal {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.install-modal-head {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.install-modal-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 auto 14px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(15, 118, 110, 0.2);
+    border: 3px solid var(--gold-light);
+}
+
+.install-modal-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.install-modal-head h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.install-modal-steps {
+    list-style: none;
+    counter-reset: step;
+    margin-bottom: 22px;
+    padding: 0;
+}
+
+.install-modal-steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 12px 12px 48px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: var(--bg-soft);
+}
+
+.install-modal-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.install-modal-steps li strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.install-modal-btn {
+    width: 100%;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
+}
+
+.install-modal-btn:active {
+    transform: scale(0.96);
+}
+
+body.dark .install-modal {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark .install-modal-steps li {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+@media (display-mode: standalone) {
+    .install-banner,
+    .install-btn {
+        display: none !important;
+    }
+}
