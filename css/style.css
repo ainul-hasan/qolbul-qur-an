@@ -1,5 +1,5 @@
 /* ============================================
-   QOLBUL QUR'AN - PREMIUM APP v3.0
+   QOLBUL QUR'AN - PREMIUM APP v3.1
    Navbar Ala Aplikasi Besar + Islamic Modern
    ============================================ */
 
@@ -18,50 +18,41 @@
 /* ============================================
    ROOT VARIABLES
    ============================================ */
-
 :root {
-    /* Islamic Green Primary */
     --primary: #0f766e;
     --primary-light: #14b8a6;
     --primary-lighter: #5eead4;
     --primary-dark: #115e59;
     --primary-gradient: linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #2dd4bf 100%);
     
-    /* Gold Accent */
     --gold: #d97706;
     --gold-light: #f59e0b;
     --gold-lighter: #fbbf24;
     --gold-gradient: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #fbbf24 100%);
     
-    /* Others */
     --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     --purple-gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
     --pink-gradient: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
     --blue-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     
-    /* Glass */
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 8px 32px rgba(15, 118, 110, 0.08);
     
-    /* Text */
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-light: #94a3b8;
     --text-white: #ffffff;
     
-    /* Background */
     --bg: #f8fafc;
     --bg-soft: #f1f5f9;
     --card-bg: #ffffff;
     --nav-bg: #ffffff;
     
-    /* Borders */
     --border-color: #e2e8f0;
     --border-light: #f1f5f9;
     
-    /* Radius */
     --radius-xs: 8px;
     --radius-sm: 12px;
     --radius-md: 16px;
@@ -69,7 +60,6 @@
     --radius-lg: 24px;
     --radius-full: 100px;
     
-    /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
     --shadow: 0 4px 12px rgba(0,0,0,0.06);
     --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
@@ -83,7 +73,6 @@
 /* ============================================
    DARK MODE
    ============================================ */
-
 body.dark {
     --bg: #0f172a;
     --bg-soft: #1e293b;
@@ -105,7 +94,6 @@ body.dark {
 /* ============================================
    BASE
    ============================================ */
-
 html {
     scroll-behavior: smooth;
 }
@@ -145,9 +133,8 @@ body::before {
 }
 
 /* ============================================
-   ⭐ TOP APP BAR - ALA APLIKASI BESAR
+   TOP APP BAR
    ============================================ */
-
 .top-appbar {
     position: sticky;
     top: 0;
@@ -284,9 +271,8 @@ body.dark .top-appbar .brand-logo img {
 }
 
 /* ============================================
-   ⭐ BOTTOM NAV BAR - ALA APLIKASI BESAR
+   BOTTOM NAV BAR
    ============================================ */
-
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -382,7 +368,6 @@ body.dark .nav-item.active {
 /* ============================================
    CONTENT
    ============================================ */
-
 .content-area {
     animation: fadeSlide 0.35s ease;
     padding: 16px 16px 0;
@@ -394,460 +379,360 @@ body.dark .nav-item.active {
 }
 
 /* ============================================
-   ⭐ HERO SECTION - ALA APLIKASI BESAR
+   PROFILE HEADER (Layout Baru)
    ============================================ */
-
-.dash-hero {
-    background: var(--primary-gradient);
-    color: var(--text-white);
-    padding: 24px 20px;
-    border-radius: var(--radius-lg);
-    margin-bottom: 16px;
-    box-shadow: 0 12px 32px rgba(15, 118, 110, 0.25);
+.profile-header {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
     position: relative;
     overflow: hidden;
 }
-
-.dash-hero::before {
+.profile-header::before {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 280px;
-    height: 280px;
-    background: radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, transparent 65%);
-    border-radius: 50%;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--gold-light));
 }
-
-.dash-hero::after {
-    content: '☪';
-    position: absolute;
-    bottom: -30px;
-    right: -10px;
-    font-size: 140px;
-    color: rgba(255, 255, 255, 0.06);
-    line-height: 1;
-    font-family: serif;
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
 }
-
-.dash-hero .greeting {
-    font-size: calc(12px * var(--text-size-multiplier));
-    opacity: 0.85;
-    font-weight: 500;
-    letter-spacing: 1px;
+.profile-greeting { flex: 1; min-width: 0; }
+.profile-day {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    color: var(--primary);
+    background: rgba(15, 118, 110, 0.1);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+}
+body.dark .profile-day {
+    color: var(--primary-lighter);
+    background: rgba(20, 184, 166, 0.15);
+}
+.profile-greeting h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+.profile-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+.profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.3);
+    flex-shrink: 0;
     position: relative;
-    z-index: 1;
+}
+.profile-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 19px;
+    border: 2px solid var(--gold-light);
+    opacity: 0.4;
+}
+.profile-date {
     display: flex;
     align-items: center;
     gap: 6px;
-}
-
-.dash-hero .greeting::before {
-    content: '';
-    width: 16px;
-    height: 2px;
-    background: var(--gold-lighter);
-    border-radius: 2px;
-}
-
-.dash-hero h1 {
-    font-size: calc(22px * var(--text-size-multiplier));
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.25;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 8px;
-}
-
-.dash-hero .subtitle {
-    font-size: calc(13px * var(--text-size-multiplier));
-    opacity: 0.9;
-    line-height: 1.5;
-    position: relative;
-    z-index: 1;
-    max-width: 90%;
-}
-
-.dash-hero .date-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    font-size: calc(11px * var(--text-size-multiplier));
-    margin-top: 14px;
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-weight: 600;
-}
-
-.dash-hero .date-badge i {
-    color: var(--gold-lighter);
     font-size: 12px;
-}
-
-/* ============================================
-   ⭐ QUICK ACTIONS - ALA APLIKASI BESAR
-   ============================================ */
-
-.quick-actions {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
-    padding: 16px;
-    background: var(--card-bg);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow);
-}
-
-.quick-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 4px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: var(--transition);
-    text-decoration: none;
-    color: var(--text-primary);
-    background: transparent;
-    border: none;
-    font-family: inherit;
-}
-
-.quick-action:active {
-    transform: scale(0.94);
-    background: var(--bg-soft);
-}
-
-.quick-action .qa-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: white;
-    position: relative;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-.quick-action .qa-icon.green { background: var(--primary-gradient); }
-.quick-action .qa-icon.gold { background: var(--gold-gradient); }
-.quick-action .qa-icon.red { background: var(--danger-gradient); }
-.quick-action .qa-icon.purple { background: var(--purple-gradient); }
-.quick-action .qa-icon.blue { background: var(--blue-gradient); }
-.quick-action .qa-icon.pink { background: var(--pink-gradient); }
-
-.quick-action .qa-label {
-    font-size: calc(11px * var(--text-size-multiplier));
-    font-weight: 600;
-    text-align: center;
     color: var(--text-secondary);
-    line-height: 1.2;
+    font-weight: 600;
+    padding: 8px 12px;
+    background: var(--bg-soft);
+    border-radius: 100px;
+    flex-wrap: wrap;
 }
+body.dark .profile-date { background: rgba(15, 23, 42, 0.5); }
+.profile-date i { color: var(--primary); font-size: 12px; }
+.profile-date .dot { opacity: 0.4; }
 
 /* ============================================
-   MOTIVATION CARD
+   STATS PILL
    ============================================ */
-
-.motivation-card {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    color: white;
-    border-radius: var(--radius-lg);
-    padding: 22px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
-}
-
-body.dark .motivation-card {
-    background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-}
-
-.motivation-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gold-gradient);
-}
-
-.motivation-card::after {
-    content: '❝';
-    position: absolute;
-    bottom: -20px;
-    right: 10px;
-    font-size: 100px;
-    color: rgba(251, 191, 36, 0.08);
-    font-family: serif;
-    line-height: 1;
-}
-
-.motivation-card .quote {
-    font-size: calc(14px * var(--text-size-multiplier));
-    font-weight: 500;
-    line-height: 1.65;
-    position: relative;
-    z-index: 1;
-    font-style: italic;
-    padding-right: 16px;
-    margin-bottom: 12px;
-}
-
-.motivation-card .quote-source {
-    font-size: calc(12px * var(--text-size-multiplier));
-    font-weight: 700;
-    color: var(--gold-lighter);
+.stats-pill-wrap { margin-bottom: 14px; }
+.stats-pill {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 14px 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    letter-spacing: 0.3px;
-    position: relative;
-    z-index: 1;
+    justify-content: space-around;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
-
-.motivation-card .quote-source::before {
-    content: '';
-    width: 20px;
-    height: 2px;
-    background: var(--gold-lighter);
-    border-radius: 2px;
-}
-
-/* ============================================
-   STATS CARDS - ALA APLIKASI BESAR
-   ============================================ */
-
-.dash-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.stat-pill-item {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    margin-bottom: 16px;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
 }
-
-.stat-item {
-    background: var(--card-bg);
-    padding: 16px 12px;
-    border-radius: var(--radius-md);
-    text-align: center;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.stat-item:active {
-    transform: scale(0.96);
-    box-shadow: var(--shadow);
-}
-
-.stat-item .stat-icon {
-    font-size: 20px;
-    margin-bottom: 8px;
-    display: inline-flex;
+.stat-pill-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    font-size: 15px;
+    flex-shrink: 0;
 }
-
-.stat-item .stat-icon.purple {
-    color: #0f766e;
-    background: rgba(15, 118, 110, 0.12);
-}
-
-.stat-item .stat-icon.red {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.12);
-}
-
-.stat-item .stat-icon.green {
-    color: #d97706;
-    background: rgba(217, 119, 6, 0.12);
-}
-
-.stat-item h3 {
-    font-size: calc(24px * var(--text-size-multiplier));
+.stat-pill-icon.green { background: rgba(15, 118, 110, 0.12); color: var(--primary); }
+.stat-pill-icon.red { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+.stat-pill-icon.gold { background: rgba(217, 119, 6, 0.14); color: #d97706; }
+.stat-pill-text { display: flex; flex-direction: column; min-width: 0; }
+.stat-pill-text strong {
+    font-size: 17px;
     font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: -0.4px;
     line-height: 1;
-    letter-spacing: -0.5px;
-    margin-bottom: 4px;
 }
-
-.stat-item p {
-    font-size: calc(10px * var(--text-size-multiplier));
-    color: var(--text-light);
+.stat-pill-text span {
+    font-size: 10px;
     font-weight: 700;
+    color: var(--text-light);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+}
+.stat-pill-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border-color);
+    flex-shrink: 0;
 }
 
 /* ============================================
-   PROGRESS CARD
+   PROGRESS CLEAN
    ============================================ */
-
-.progress-wrap {
+.progress-clean {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
+    border-radius: 20px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 }
-
-.progress-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-gradient);
-}
-
-.progress-label {
+.progress-clean-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: calc(14px * var(--text-size-multiplier));
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--text-primary);
+    margin-bottom: 10px;
 }
-
-.progress-label > span:first-child {
+.progress-clean-label {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
 }
-
-.progress-label .progress-percent {
+.progress-clean-label i { color: var(--primary); font-size: 14px; }
+.progress-clean-percent {
+    font-size: 20px;
     font-weight: 800;
     color: var(--primary);
-    font-size: calc(20px * var(--text-size-multiplier));
     letter-spacing: -0.5px;
+    line-height: 1;
 }
-
-body.dark .progress-label .progress-percent {
-    color: var(--primary-lighter);
-}
-
-.progress-bar {
-    height: 10px;
+body.dark .progress-clean-percent { color: var(--primary-lighter); }
+.progress-clean-percent span { font-size: 12px; opacity: 0.7; }
+.progress-clean-bar {
+    height: 8px;
     background: var(--bg-soft);
-    border-radius: var(--radius-full);
+    border-radius: 100px;
     overflow: hidden;
-    position: relative;
 }
-
-.progress-fill {
+body.dark .progress-clean-bar { background: rgba(15, 23, 42, 0.6); }
+.progress-clean-fill {
     height: 100%;
-    background: var(--primary-gradient);
-    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--gold-light) 100%);
+    border-radius: 100px;
     width: 0%;
-    transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    box-shadow: 0 0 12px rgba(15, 118, 110, 0.4);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(15, 118, 110, 0.4);
 }
-
-.progress-fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-.progress-info {
+.progress-clean-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    font-size: calc(12px * var(--text-size-multiplier));
+    margin-top: 8px;
+    font-size: 11px;
     color: var(--text-light);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* ============================================
-   SECTION HEADER - ALA APLIKASI BESAR
+   QUOTE MINI
    ============================================ */
+.quote-mini {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+.quote-mini-icon {
+    position: absolute;
+    top: 14px; right: 16px;
+    font-size: 24px;
+    color: var(--gold-light);
+    opacity: 0.4;
+}
+.quote-mini p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 8px;
+    padding-right: 30px;
+}
+.quote-mini span {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.3px;
+}
 
-.section-header {
+/* ============================================
+   SECTION CLEAN
+   ============================================ */
+.section-clean {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 16px 4px 8px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.section-clean-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-    padding: 0 4px;
+    padding: 0 14px 12px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 6px;
 }
-
-.section-header h3 {
-    font-size: calc(16px * var(--text-size-multiplier));
+.section-clean-head h3 {
+    font-size: 14px;
     font-weight: 800;
     color: var(--text-primary);
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
-
-.section-header h3 i {
-    font-size: 18px;
+.dot-green, .dot-red {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    display: inline-block;
 }
-
-.section-header .see-all {
-    font-size: calc(12px * var(--text-size-multiplier));
-    font-weight: 700;
-    color: var(--primary);
+.dot-green { background: var(--primary); box-shadow: 0 0 8px rgba(15, 118, 110, 0.5); }
+.dot-red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+.btn-text-link {
     background: transparent;
     border: none;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
-    padding: 6px 10px;
-    border-radius: var(--radius-full);
-    transition: var(--transition);
+    padding: 4px 8px;
+    border-radius: 100px;
+    transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 4px;
-    text-decoration: none;
+    font-family: inherit;
 }
+.btn-text-link:active { background: rgba(15, 118, 110, 0.1); }
+body.dark .btn-text-link { color: var(--primary-lighter); }
 
-.section-header .see-all:active {
-    background: rgba(15, 118, 110, 0.1);
-    transform: scale(0.95);
+/* ============================================
+   ROW ITEM
+   ============================================ */
+.row-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 2px 6px;
 }
-
-body.dark .section-header .see-all {
-    color: var(--primary-lighter);
+.row-item:active { transform: scale(0.98); background: var(--bg-soft); }
+.row-item:hover { background: var(--bg-soft); }
+.row-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+.row-icon.green { background: rgba(15, 118, 110, 0.1); color: var(--primary); }
+.row-icon.red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.row-body { flex: 1; min-width: 0; }
+.row-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.row-meta {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.row-arrow {
+    color: var(--text-light);
+    font-size: 12px;
+    flex-shrink: 0;
+    opacity: 0.5;
 }
 
 /* ============================================
    LIST SECTION (Rekomendasi & Favorit)
    ============================================ */
-
 .list-section {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -856,10 +741,6 @@ body.dark .section-header .see-all {
     margin-bottom: 16px;
     box-shadow: var(--shadow);
 }
-
-/* ============================================
-   REKOMENDASI & FAVORIT ITEMS
-   ============================================ */
 
 .rekomendasi-list,
 .favorit-list {
@@ -990,9 +871,8 @@ body.dark .lihat-semua-btn {
 }
 
 /* ============================================
-   PAGE TITLE - ALA APLIKASI BESAR
+   PAGE TITLE
    ============================================ */
-
 .page-title {
     margin-bottom: 16px;
     font-weight: 800;
@@ -1004,7 +884,6 @@ body.dark .lihat-semua-btn {
     align-items: center;
     gap: 10px;
 }
-
 .page-title::before {
     content: '';
     width: 4px;
@@ -1015,9 +894,8 @@ body.dark .lihat-semua-btn {
 }
 
 /* ============================================
-   SEARCH BAR - MODERN
+   SEARCH BAR
    ============================================ */
-
 .search-bar {
     padding: 0 16px;
     margin-bottom: 12px;
@@ -1025,7 +903,6 @@ body.dark .lihat-semua-btn {
     gap: 10px;
     position: relative;
 }
-
 .search-bar::before {
     content: '\f002';
     font-family: 'Font Awesome 6 Free';
@@ -1039,7 +916,6 @@ body.dark .lihat-semua-btn {
     pointer-events: none;
     z-index: 1;
 }
-
 .search-bar input {
     flex: 1;
     padding: 14px 18px 14px 44px;
@@ -1053,20 +929,15 @@ body.dark .lihat-semua-btn {
     font-weight: 500;
     box-shadow: var(--shadow-sm);
 }
-
-.search-bar input::placeholder {
-    color: var(--text-light);
-}
-
+.search-bar input::placeholder { color: var(--text-light); }
 .search-bar input:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
 }
 
 /* ============================================
-   FILTER CHIPS - ALA APLIKASI BESAR
+   FILTER CHIPS
    ============================================ */
-
 .filter-group {
     display: flex;
     gap: 8px;
@@ -1078,11 +949,7 @@ body.dark .lihat-semua-btn {
     mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
 }
-
-.filter-group::-webkit-scrollbar {
-    display: none;
-}
-
+.filter-group::-webkit-scrollbar { display: none; }
 .filter-chip {
     padding: 8px 18px;
     border-radius: var(--radius-full);
@@ -1096,22 +963,17 @@ body.dark .lihat-semua-btn {
     white-space: nowrap;
     flex-shrink: 0;
 }
-
 .filter-chip.active {
     background: var(--primary-gradient);
     color: var(--text-white);
     border-color: transparent;
     box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
 }
-
-.filter-chip:active {
-    transform: scale(0.95);
-}
+.filter-chip:active { transform: scale(0.95); }
 
 /* ============================================
-   ITEM CARD - MODERN LIST
+   ITEM CARD
    ============================================ */
-
 .item-card {
     background: var(--card-bg);
     border-radius: var(--radius-md);
@@ -1128,22 +990,15 @@ body.dark .lihat-semua-btn {
     margin-left: 16px;
     margin-right: 16px;
 }
-
 .item-card:active {
     transform: scale(0.98);
     background: var(--bg-soft);
 }
-
 .item-card:hover {
     border-color: var(--primary);
     box-shadow: 0 6px 20px rgba(15, 118, 110, 0.12);
 }
-
-.item-card .info {
-    flex: 1;
-    min-width: 0;
-}
-
+.item-card .info { flex: 1; min-width: 0; }
 .item-card .info h4 {
     font-size: calc(15px * var(--text-size-multiplier));
     font-weight: 700;
@@ -1151,7 +1006,6 @@ body.dark .lihat-semua-btn {
     line-height: 1.3;
     margin-bottom: 4px;
 }
-
 .item-card .info p {
     font-size: calc(12px * var(--text-size-multiplier));
     color: var(--text-light);
@@ -1160,12 +1014,7 @@ body.dark .lihat-semua-btn {
     align-items: center;
     gap: 5px;
 }
-
-.item-card .info p::before {
-    content: '📖';
-    font-size: 11px;
-}
-
+.item-card .info p::before { content: '📖'; font-size: 11px; }
 .item-card .info .subtitle {
     font-size: calc(11px * var(--text-size-multiplier));
     color: var(--text-light);
@@ -1173,13 +1022,11 @@ body.dark .lihat-semua-btn {
     font-style: italic;
     opacity: 0.8;
 }
-
 .item-actions {
     display: flex;
     gap: 6px;
     flex-shrink: 0;
 }
-
 .item-actions button {
     background: transparent;
     border: none;
@@ -1195,16 +1042,11 @@ body.dark .lihat-semua-btn {
     justify-content: center;
     border: 1.5px solid transparent;
 }
-
-.item-actions button:active {
-    transform: scale(0.85);
-}
-
+.item-actions button:active { transform: scale(0.85); }
 .item-actions .fav-active {
     color: #ef4444;
     background: rgba(239, 68, 68, 0.12);
 }
-
 .item-actions .done-active {
     color: #d97706;
     background: rgba(217, 119, 6, 0.12);
@@ -1213,14 +1055,12 @@ body.dark .lihat-semua-btn {
 /* ============================================
    EMPTY STATE
    ============================================ */
-
 .empty-state {
     text-align: center;
     padding: 60px 24px;
     color: var(--text-secondary);
     margin: 0 16px;
 }
-
 .empty-state i {
     font-size: 40px;
     color: var(--primary);
@@ -1234,14 +1074,12 @@ body.dark .lihat-semua-btn {
     border-radius: 50%;
     opacity: 0.8;
 }
-
 .empty-state h4 {
     font-size: calc(17px * var(--text-size-multiplier));
     margin-bottom: 6px;
     font-weight: 700;
     color: var(--text-primary);
 }
-
 .empty-state p {
     font-size: calc(13px * var(--text-size-multiplier));
     opacity: 0.7;
@@ -1249,12 +1087,9 @@ body.dark .lihat-semua-btn {
 }
 
 /* ============================================
-   DETAIL PAGE - ALA APLIKASI BESAR
+   DETAIL PAGE
    ============================================ */
-
-.detail-page {
-    padding: 0 16px 20px;
-}
+.detail-page { padding: 0 16px 20px; }
 
 .detail-header {
     display: flex;
@@ -1269,7 +1104,6 @@ body.dark .lihat-semua-btn {
     position: relative;
     overflow: hidden;
 }
-
 .detail-header::before {
     content: '';
     position: absolute;
@@ -1280,7 +1114,6 @@ body.dark .lihat-semua-btn {
     background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 65%);
     border-radius: 50%;
 }
-
 .detail-header .back-btn {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
@@ -1300,18 +1133,13 @@ body.dark .lihat-semua-btn {
     position: relative;
     z-index: 1;
 }
-
-.detail-header .back-btn:active {
-    transform: scale(0.9);
-}
-
+.detail-header .back-btn:active { transform: scale(0.9); }
 .detail-header .title-section {
     flex: 1;
     min-width: 0;
     position: relative;
     z-index: 1;
 }
-
 .detail-header .title-section h2 {
     font-size: calc(19px * var(--text-size-multiplier));
     font-weight: 800;
@@ -1319,46 +1147,15 @@ body.dark .lihat-semua-btn {
     letter-spacing: -0.3px;
     margin-bottom: 4px;
 }
-
 .detail-header .title-section p {
     font-size: calc(12px * var(--text-size-multiplier));
     opacity: 0.9;
     font-weight: 500;
 }
 
-.detail-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 0 4px;
-}
-
-.detail-actions button {
-    flex: 1;
-    padding: 12px;
-    border-radius: var(--radius-md);
-    border: 1.5px solid var(--border-color);
-    background: var(--card-bg);
-    color: var(--text-secondary);
-    font-weight: 700;
-    cursor: pointer;
-    transition: var(--transition);
-    font-size: calc(13px * var(--text-size-multiplier));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-family: inherit;
-}
-
-.detail-actions button:active {
-    transform: scale(0.96);
-}
-
 /* ============================================
-   VERSE ITEM - PREMIUM ISLAMIC
+   VERSE ITEM
    ============================================ */
-
 .verse-item {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -1370,7 +1167,6 @@ body.dark .lihat-semua-btn {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
 }
-
 .verse-item::before {
     content: '';
     position: absolute;
@@ -1381,7 +1177,6 @@ body.dark .lihat-semua-btn {
     background: linear-gradient(90deg, var(--primary), var(--gold-light), var(--primary));
     opacity: 0.6;
 }
-
 .verse-item .arabic {
     font-size: calc(24px * var(--text-size-multiplier));
     font-weight: 700;
@@ -1394,13 +1189,9 @@ body.dark .lihat-semua-btn {
     letter-spacing: 0.3px;
     word-spacing: 3px;
 }
-
-body.dark .verse-item .arabic {
-    color: #fbbf24;
-}
-
+body.dark .verse-item .arabic { color: #fbbf24; }
 .verse-item .latin {
-    font-size: calc(13px * var(--text-size-multiplier));
+    font-size: calc(14px * var(--text-size-multiplier));
     color: var(--text-secondary);
     font-style: italic;
     margin-bottom: 12px;
@@ -1410,20 +1201,15 @@ body.dark .verse-item .arabic {
     border-radius: var(--radius-sm);
     border-left: 3px solid var(--primary-light);
 }
-
-body.dark .verse-item .latin {
-    background: rgba(20, 184, 166, 0.08);
-}
-
+body.dark .verse-item .latin { background: rgba(20, 184, 166, 0.08); }
 .verse-item .translation {
-    font-size: calc(13px * var(--text-size-multiplier));
+    font-size: calc(14px * var(--text-size-multiplier));
     color: var(--text-secondary);
     border-top: 1px dashed var(--border-color);
     padding-top: 12px;
     line-height: 1.75;
     position: relative;
 }
-
 .verse-item .translation::before {
     content: 'Terjemahan';
     display: inline-block;
@@ -1438,44 +1224,20 @@ body.dark .verse-item .latin {
     border-radius: var(--radius-full);
     margin-right: 8px;
 }
-
 body.dark .verse-item .translation::before {
     color: var(--primary-lighter);
     background: rgba(20, 184, 166, 0.15);
 }
 
+/* Sembunyikan Badge "Ayat X" */
 .verse-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary-gradient);
-    color: var(--text-white);
-    border-radius: 12px;
-    min-width: 40px;
-    height: 30px;
-    padding: 0 12px;
-    font-size: 13px;
-    font-weight: 800;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
-    letter-spacing: 0.5px;
-}
-
-.verse-number::before {
-    content: 'Ayat ';
-    font-size: 10px;
-    opacity: 0.85;
-    margin-right: 2px;
+    display: none !important;
 }
 
 /* ============================================
-   PENGATURAN - ALA APLIKASI BESAR
+   PENGATURAN
    ============================================ */
-
-.settings-container {
-    padding: 0 16px;
-}
-
+.settings-container { padding: 0 16px; }
 .setting-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -1486,19 +1248,16 @@ body.dark .verse-item .translation::before {
     overflow: hidden;
     position: relative;
 }
-
 .setting-group {
     margin-bottom: 20px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--border-light);
 }
-
 .setting-group:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
-
 .setting-group h4 {
     font-size: calc(11px * var(--text-size-multiplier));
     font-weight: 800;
@@ -1510,11 +1269,7 @@ body.dark .verse-item .translation::before {
     align-items: center;
     gap: 8px;
 }
-
-body.dark .setting-group h4 {
-    color: var(--primary-lighter);
-}
-
+body.dark .setting-group h4 { color: var(--primary-lighter); }
 .setting-group h4::before {
     content: '';
     width: 4px;
@@ -1522,7 +1277,6 @@ body.dark .setting-group h4 {
     background: var(--primary-gradient);
     border-radius: 4px;
 }
-
 .setting-item {
     display: flex;
     justify-content: space-between;
@@ -1533,11 +1287,7 @@ body.dark .setting-group h4 {
     gap: 12px;
     margin-bottom: 4px;
 }
-
-.setting-item:hover {
-    background: var(--bg-soft);
-}
-
+.setting-item:hover { background: var(--bg-soft); }
 .setting-item > span:first-child,
 .setting-item .toggle-label > span:first-child {
     font-size: calc(14px * var(--text-size-multiplier));
@@ -1547,7 +1297,6 @@ body.dark .setting-group h4 {
     align-items: center;
     gap: 10px;
 }
-
 .setting-item button {
     background: var(--primary-gradient);
     color: var(--text-white);
@@ -1561,11 +1310,7 @@ body.dark .setting-group h4 {
     box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
     font-family: inherit;
 }
-
-.setting-item button:active {
-    transform: scale(0.94);
-}
-
+.setting-item button:active { transform: scale(0.94); }
 .setting-item .danger {
     background: var(--danger-gradient);
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
@@ -1582,15 +1327,8 @@ body.dark .setting-group h4 {
     transition: var(--transition);
     flex-shrink: 0;
 }
-
-body.dark .toggle {
-    background: #475569;
-}
-
-.toggle.active {
-    background: var(--primary);
-}
-
+body.dark .toggle { background: #475569; }
+.toggle.active { background: var(--primary); }
 .toggle::after {
     content: '';
     position: absolute;
@@ -1603,10 +1341,7 @@ body.dark .toggle {
     transition: var(--transition);
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-
-.toggle.active::after {
-    left: 25px;
-}
+.toggle.active::after { left: 25px; }
 
 .toggle-sm {
     width: 44px;
@@ -1618,15 +1353,8 @@ body.dark .toggle {
     transition: var(--transition);
     flex-shrink: 0;
 }
-
-body.dark .toggle-sm {
-    background: #475569;
-}
-
-.toggle-sm.active {
-    background: var(--primary);
-}
-
+body.dark .toggle-sm { background: #475569; }
+.toggle-sm.active { background: var(--primary); }
 .toggle-sm::after {
     content: '';
     position: absolute;
@@ -1639,10 +1367,7 @@ body.dark .toggle-sm {
     transition: var(--transition);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-
-.toggle-sm.active::after {
-    left: 23px;
-}
+.toggle-sm.active::after { left: 23px; }
 
 .setting-item .toggle-label {
     display: flex;
@@ -1660,7 +1385,6 @@ body.dark .toggle-sm {
     gap: 8px;
     margin-top: 8px;
 }
-
 .text-size-btn {
     padding: 12px 6px;
     border-radius: var(--radius-md);
@@ -1678,25 +1402,19 @@ body.dark .toggle-sm {
     gap: 4px;
     font-family: inherit;
 }
-
 .text-size-btn.active {
     border-color: transparent;
     background: var(--primary-gradient);
     color: white;
     box-shadow: 0 6px 16px rgba(15, 118, 110, 0.3);
 }
-
-.text-size-btn:active {
-    transform: scale(0.94);
-}
-
+.text-size-btn:active { transform: scale(0.94); }
 .text-size-btn .size-label {
     font-size: calc(9px * var(--text-size-multiplier));
     opacity: 0.85;
     margin-top: 2px;
     font-weight: 700;
 }
-
 .text-size-btn .size-icon {
     font-size: 16px;
     line-height: 1;
@@ -1706,16 +1424,31 @@ body.dark .toggle-sm {
 /* ============================================
    TEXT SIZE CLASSES
    ============================================ */
+body.text-small   { --text-size-multiplier: 0.85 !important; }
+body.text-medium  { --text-size-multiplier: 1 !important; }
+body.text-large   { --text-size-multiplier: 1.2 !important; }
+body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
 
-.text-small { --text-size-multiplier: 0.85; }
-.text-medium { --text-size-multiplier: 1; }
-.text-large { --text-size-multiplier: 1.15; }
-.text-xlarge { --text-size-multiplier: 1.3; }
+/* Fix Teks Arab Ikut Multiplier */
+.verse-item .arabic {
+    font-size: calc(24px * var(--text-size-multiplier)) !important;
+    line-height: calc(1.9 * var(--text-size-multiplier)) !important;
+}
+
+@media (max-width: 400px) {
+    .verse-item .arabic {
+        font-size: calc(20px * var(--text-size-multiplier)) !important;
+    }
+}
+@media (min-width: 481px) {
+    .verse-item .arabic {
+        font-size: calc(28px * var(--text-size-multiplier)) !important;
+    }
+}
 
 /* ============================================
    VERSION
    ============================================ */
-
 .version {
     text-align: center;
     font-size: calc(11px * var(--text-size-multiplier));
@@ -1727,7 +1460,6 @@ body.dark .toggle-sm {
     letter-spacing: 0.5px;
     line-height: 1.8;
 }
-
 .version::before {
     content: '☪';
     color: var(--gold);
@@ -1739,7 +1471,6 @@ body.dark .toggle-sm {
 /* ============================================
    VISIBILITY HELPERS
    ============================================ */
-
 .hide-latin .verse-item .latin { display: none !important; }
 .hide-translation .verse-item .translation { display: none !important; }
 .hide-latin.hide-translation .verse-item .latin,
@@ -1748,7 +1479,6 @@ body.dark .toggle-sm {
 /* ============================================
    CARD (Generic)
    ============================================ */
-
 .card {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -1757,7 +1487,6 @@ body.dark .toggle-sm {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
 }
-
 .card-glass {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -1766,7 +1495,6 @@ body.dark .toggle-sm {
     box-shadow: var(--shadow);
     margin: 0 16px 16px;
 }
-
 .card-glass h4 {
     font-size: calc(15px * var(--text-size-multiplier)) !important;
     font-weight: 800 !important;
@@ -1778,1015 +1506,7 @@ body.dark .toggle-sm {
 }
 
 /* ============================================
-   PWA INSTALL BANNER
-   ============================================ */
-
-.pwa-install-banner {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 440px;
-    background: var(--primary-gradient);
-    color: white;
-    padding: 16px 20px;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 48px rgba(15, 118, 110, 0.4);
-    z-index: 999;
-    display: none;
-    animation: slideUp 0.4s ease;
-    align-items: center;
-    gap: 14px;
-    border: 1px solid rgba(251, 191, 36, 0.3);
-}
-
-.pwa-install-banner.show {
-    display: flex;
-}
-
-.pwa-install-banner .banner-icon {
-    font-size: 26px;
-    color: var(--gold-lighter);
-    flex-shrink: 0;
-}
-
-.pwa-install-banner .banner-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.pwa-install-banner .banner-title {
-    font-weight: 800;
-    font-size: calc(14px * var(--text-size-multiplier));
-}
-
-.pwa-install-banner .banner-desc {
-    font-size: calc(11px * var(--text-size-multiplier));
-    opacity: 0.9;
-    margin-top: 2px;
-}
-
-.pwa-install-banner .banner-actions {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.pwa-install-banner .banner-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: var(--radius-full);
-    font-weight: 700;
-    font-size: calc(11px * var(--text-size-multiplier));
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: inherit;
-}
-
-.pwa-install-banner .banner-btn:active {
-    transform: scale(0.92);
-}
-
-.pwa-install-banner .banner-btn.primary {
-    background: var(--gold-lighter);
-    color: #78350f;
-}
-
-@keyframes slideUp {
-    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-/* ============================================
-   PWA TOAST
-   ============================================ */
-
-.pwa-toast {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    padding: 12px 24px;
-    border-radius: var(--radius-full);
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: var(--shadow-lg);
-    z-index: 9999;
-    animation: fadeSlide 0.3s ease;
-    max-width: 90%;
-    text-align: center;
-}
-
-.pwa-toast.success { background: var(--success-gradient); }
-.pwa-toast.warning { background: var(--gold-gradient); }
-.pwa-toast.info { background: var(--primary-gradient); }
-
-/* ============================================
-   OFFLINE INDICATOR
-   ============================================ */
-
-.offline-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--danger-gradient);
-    color: white;
-    text-align: center;
-    padding: 6px 12px;
-    font-size: 12px;
-    font-weight: 700;
-    z-index: 1000;
-    display: none;
-}
-
-.offline-indicator.show {
-    display: block;
-}
-
-/* ============================================
-   PWA STANDALONE
-   ============================================ */
-
-@media (display-mode: standalone) {
-    body {
-        padding-top: env(safe-area-inset-top);
-    }
-    .top-appbar {
-        padding-top: calc(14px + env(safe-area-inset-top));
-    }
-    .pwa-install-banner { display: none !important; }
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 380px) {
-    .quick-actions { 
-        grid-template-columns: repeat(4, 1fr); 
-        padding: 12px 10px; 
-        gap: 6px;
-    }
-    .quick-action .qa-icon { width: 42px; height: 42px; font-size: 18px; }
-    .quick-action .qa-label { font-size: 10px; }
-    
-    .top-appbar { padding: 12px 16px 10px; }
-    .top-appbar .brand-logo { width: 38px; height: 38px; font-size: 18px; }
-    .top-appbar .brand-text h1 { font-size: 14px; }
-    .top-appbar .icon-btn { width: 36px; height: 36px; font-size: 14px; }
-    
-    .dash-hero { padding: 20px 18px; }
-    .dash-hero h1 { font-size: 19px; }
-    
-    .stat-item h3 { font-size: 20px; }
-    .stat-item p { font-size: 9px; }
-    .stat-item .stat-icon { width: 36px; height: 36px; font-size: 18px; }
-    
-    .nav-item { font-size: 9px; }
-    .nav-item i { font-size: 18px; }
-}
-
-@media (min-width: 481px) {
-    .app-container { max-width: 520px; }
-    .bottom-nav { max-width: 520px; }
-    .dash-hero h1 { font-size: 24px; }
-    .verse-item .arabic { font-size: 28px; }
-    .top-appbar .brand-text h1 { font-size: 17px; }
-}
-/* ============================================
-   LAYOUT BARU - CLEAN & MODERN
-   ============================================ */
-
-.profile-header {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 20px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    position: relative;
-    overflow: hidden;
-}
-.profile-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--gold-light));
-}
-.profile-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-.profile-greeting { flex: 1; min-width: 0; }
-.profile-day {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--primary);
-    background: rgba(15, 118, 110, 0.1);
-    padding: 4px 10px;
-    border-radius: 100px;
-    margin-bottom: 8px;
-}
-body.dark .profile-day {
-    color: var(--primary-lighter);
-    background: rgba(20, 184, 166, 0.15);
-}
-.profile-greeting h1 {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.4px;
-    line-height: 1.2;
-    margin-bottom: 4px;
-}
-.profile-sub {
-    font-size: 12px;
-    color: var(--text-light);
-    font-weight: 600;
-}
-.profile-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.3);
-    flex-shrink: 0;
-    position: relative;
-}
-.profile-avatar::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: 19px;
-    border: 2px solid var(--gold-light);
-    opacity: 0.4;
-}
-.profile-date {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-secondary);
-    font-weight: 600;
-    padding: 8px 12px;
-    background: var(--bg-soft);
-    border-radius: 100px;
-    flex-wrap: wrap;
-}
-body.dark .profile-date { background: rgba(15, 23, 42, 0.5); }
-.profile-date i { color: var(--primary); font-size: 12px; }
-.profile-date .dot { opacity: 0.4; }
-
-.stats-pill-wrap { margin-bottom: 14px; }
-.stats-pill {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 14px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.stat-pill-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    justify-content: center;
-    min-width: 0;
-}
-.stat-pill-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-}
-.stat-pill-icon.green { background: rgba(15, 118, 110, 0.12); color: var(--primary); }
-.stat-pill-icon.red { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
-.stat-pill-icon.gold { background: rgba(217, 119, 6, 0.14); color: #d97706; }
-.stat-pill-text { display: flex; flex-direction: column; min-width: 0; }
-.stat-pill-text strong {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.4px;
-    line-height: 1;
-}
-.stat-pill-text span {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-top: 2px;
-}
-.stat-pill-divider {
-    width: 1px;
-    height: 28px;
-    background: var(--border-color);
-    flex-shrink: 0;
-}
-
-.progress-clean {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 16px 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.progress-clean-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.progress-clean-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-.progress-clean-label i { color: var(--primary); font-size: 14px; }
-.progress-clean-percent {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: -0.5px;
-    line-height: 1;
-}
-body.dark .progress-clean-percent { color: var(--primary-lighter); }
-.progress-clean-percent span { font-size: 12px; opacity: 0.7; }
-.progress-clean-bar {
-    height: 8px;
-    background: var(--bg-soft);
-    border-radius: 100px;
-    overflow: hidden;
-}
-body.dark .progress-clean-bar { background: rgba(15, 23, 42, 0.6); }
-.progress-clean-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--gold-light) 100%);
-    border-radius: 100px;
-    width: 0%;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 8px rgba(15, 118, 110, 0.4);
-}
-.progress-clean-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    font-size: 11px;
-    color: var(--text-light);
-    font-weight: 600;
-}
-
-.quote-mini {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: white;
-    border-radius: 20px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
-}
-.quote-mini-icon {
-    position: absolute;
-    top: 14px; right: 16px;
-    font-size: 24px;
-    color: var(--gold-light);
-    opacity: 0.4;
-}
-.quote-mini p {
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 8px;
-    padding-right: 30px;
-}
-.quote-mini span {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.3px;
-}
-
-.section-clean {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 16px 4px 8px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.section-clean-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 14px 12px;
-    border-bottom: 1px solid var(--border-light);
-    margin-bottom: 6px;
-}
-.section-clean-head h3 {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.2px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.dot-green, .dot-red {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    display: inline-block;
-}
-.dot-green { background: var(--primary); box-shadow: 0 0 8px rgba(15, 118, 110, 0.5); }
-.dot-red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
-.btn-text-link {
-    background: transparent;
-    border: none;
-    color: var(--primary);
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 100px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: inherit;
-}
-.btn-text-link:active { background: rgba(15, 118, 110, 0.1); }
-body.dark .btn-text-link { color: var(--primary-lighter); }
-
-.row-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin: 2px 6px;
-}
-.row-item:active { transform: scale(0.98); background: var(--bg-soft); }
-.row-item:hover { background: var(--bg-soft); }
-.row-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-}
-.row-icon.green { background: rgba(15, 118, 110, 0.1); color: var(--primary); }
-.row-icon.red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-.row-body { flex: 1; min-width: 0; }
-.row-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.row-meta {
-    font-size: 11px;
-    color: var(--text-light);
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.row-arrow {
-    color: var(--text-light);
-    font-size: 12px;
-    flex-shrink: 0;
-    opacity: 0.5;
-}
-/* ============================================
-   LAYOUT BARU - CLEAN & MODERN
-   ============================================ */
-
-.profile-header {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 20px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    position: relative;
-    overflow: hidden;
-}
-.profile-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--gold-light));
-}
-.profile-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-.profile-greeting { flex: 1; min-width: 0; }
-.profile-day {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--primary);
-    background: rgba(15, 118, 110, 0.1);
-    padding: 4px 10px;
-    border-radius: 100px;
-    margin-bottom: 8px;
-}
-body.dark .profile-day {
-    color: var(--primary-lighter);
-    background: rgba(20, 184, 166, 0.15);
-}
-.profile-greeting h1 {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.4px;
-    line-height: 1.2;
-    margin-bottom: 4px;
-}
-.profile-sub {
-    font-size: 12px;
-    color: var(--text-light);
-    font-weight: 600;
-}
-.profile-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 6px 16px rgba(15, 118, 110, 0.3);
-    flex-shrink: 0;
-    position: relative;
-}
-.profile-avatar::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: 19px;
-    border: 2px solid var(--gold-light);
-    opacity: 0.4;
-}
-.profile-date {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-secondary);
-    font-weight: 600;
-    padding: 8px 12px;
-    background: var(--bg-soft);
-    border-radius: 100px;
-    flex-wrap: wrap;
-}
-body.dark .profile-date { background: rgba(15, 23, 42, 0.5); }
-.profile-date i { color: var(--primary); font-size: 12px; }
-.profile-date .dot { opacity: 0.4; }
-
-.stats-pill-wrap { margin-bottom: 14px; }
-.stats-pill {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 14px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.stat-pill-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    justify-content: center;
-    min-width: 0;
-}
-.stat-pill-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-}
-.stat-pill-icon.green { background: rgba(15, 118, 110, 0.12); color: var(--primary); }
-.stat-pill-icon.red { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
-.stat-pill-icon.gold { background: rgba(217, 119, 6, 0.14); color: #d97706; }
-.stat-pill-text { display: flex; flex-direction: column; min-width: 0; }
-.stat-pill-text strong {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.4px;
-    line-height: 1;
-}
-.stat-pill-text span {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-top: 2px;
-}
-.stat-pill-divider {
-    width: 1px;
-    height: 28px;
-    background: var(--border-color);
-    flex-shrink: 0;
-}
-
-.progress-clean {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 16px 18px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.progress-clean-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.progress-clean-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-.progress-clean-label i { color: var(--primary); font-size: 14px; }
-.progress-clean-percent {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: -0.5px;
-    line-height: 1;
-}
-body.dark .progress-clean-percent { color: var(--primary-lighter); }
-.progress-clean-percent span { font-size: 12px; opacity: 0.7; }
-.progress-clean-bar {
-    height: 8px;
-    background: var(--bg-soft);
-    border-radius: 100px;
-    overflow: hidden;
-}
-body.dark .progress-clean-bar { background: rgba(15, 23, 42, 0.6); }
-.progress-clean-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--gold-light) 100%);
-    border-radius: 100px;
-    width: 0%;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 8px rgba(15, 118, 110, 0.4);
-}
-.progress-clean-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    font-size: 11px;
-    color: var(--text-light);
-    font-weight: 600;
-}
-
-.quote-mini {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: white;
-    border-radius: 20px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
-}
-.quote-mini-icon {
-    position: absolute;
-    top: 14px; right: 16px;
-    font-size: 24px;
-    color: var(--gold-light);
-    opacity: 0.4;
-}
-.quote-mini p {
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 8px;
-    padding-right: 30px;
-}
-.quote-mini span {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.3px;
-}
-
-.section-clean {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 16px 4px 8px;
-    margin-bottom: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-}
-.section-clean-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 14px 12px;
-    border-bottom: 1px solid var(--border-light);
-    margin-bottom: 6px;
-}
-.section-clean-head h3 {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.2px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.dot-green, .dot-red {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    display: inline-block;
-}
-.dot-green { background: var(--primary); box-shadow: 0 0 8px rgba(15, 118, 110, 0.5); }
-.dot-red { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
-.btn-text-link {
-    background: transparent;
-    border: none;
-    color: var(--primary);
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 100px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: inherit;
-}
-.btn-text-link:active { background: rgba(15, 118, 110, 0.1); }
-body.dark .btn-text-link { color: var(--primary-lighter); }
-
-.row-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin: 2px 6px;
-}
-.row-item:active { transform: scale(0.98); background: var(--bg-soft); }
-.row-item:hover { background: var(--bg-soft); }
-.row-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-}
-.row-icon.green { background: rgba(15, 118, 110, 0.1); color: var(--primary); }
-.row-icon.red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-.row-body { flex: 1; min-width: 0; }
-.row-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.3;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.row-meta {
-    font-size: 11px;
-    color: var(--text-light);
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.row-arrow {
-    color: var(--text-light);
-    font-size: 12px;
-    flex-shrink: 0;
-    opacity: 0.5;
-}
-
-/* ============================================
-   FIX: TEKS ARAB IKUT UKURAN TEKS
-   ============================================ */
-
-/* Text size multiplier - DIPERKUAT */
-body.text-small   { --text-size-multiplier: 0.85 !important; }
-body.text-medium  { --text-size-multiplier: 1 !important; }
-body.text-large   { --text-size-multiplier: 1.2 !important; }
-body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
-
-/* ARAB - PAKSA IKUT MULTIPLIER */
-.verse-item .arabic,
-.verse .arabic,
-[class*="arabic"],
-.arab,
-.ayat-arab {
-    font-size: calc(24px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.9 * var(--text-size-multiplier)) !important;
-}
-
-/* Latin - Ikut multiplier */
-.verse-item .latin,
-.verse .latin {
-    font-size: calc(14px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.7 * var(--text-size-multiplier)) !important;
-}
-
-/* Terjemahan - Ikut multiplier */
-.verse-item .translation,
-.verse .translation {
-    font-size: calc(14px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.75 * var(--text-size-multiplier)) !important;
-}
-
-/* Nomor ayat */
-.verse-number {
-    font-size: calc(13px * var(--text-size-multiplier)) !important;
-}
-
-/* Judul & subtitle detail */
-.detail-header .title-section h2 {
-    font-size: calc(19px * var(--text-size-multiplier)) !important;
-}
-.detail-header .title-section p {
-    font-size: calc(12px * var(--text-size-multiplier)) !important;
-}
-
-/* Tombol aksi detail */
-.detail-actions button {
-    font-size: calc(13px * var(--text-size-multiplier)) !important;
-}
-
-/* Di layar kecil */
-@media (max-width: 400px) {
-    .verse-item .arabic,
-    .verse .arabic,
-    [class*="arabic"],
-    .arab,
-    .ayat-arab {
-        font-size: calc(20px * var(--text-size-multiplier)) !important;
-    }
-}
-
-/* Di layar besar */
-@media (min-width: 481px) {
-    .verse-item .arabic,
-    .verse .arabic,
-    [class*="arabic"],
-    .arab,
-    .ayat-arab {
-        font-size: calc(28px * var(--text-size-multiplier)) !important;
-    }
-}
-/* ============================================
-   HILANGKAN BADGE "Ayat X"
-   ============================================ */
-.verse-number {
-    display: none !important;
-}
-
-/* ============================================
-   FIX UKURAN TEKS ARAB
-   ============================================ */
-body.text-small   { --text-size-multiplier: 0.85 !important; }
-body.text-medium  { --text-size-multiplier: 1 !important; }
-body.text-large   { --text-size-multiplier: 1.2 !important; }
-body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
-
-.verse-item .arabic,
-.verse .arabic {
-    font-size: calc(24px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.9 * var(--text-size-multiplier)) !important;
-}
-
-.verse-item .latin,
-.verse .latin {
-    font-size: calc(14px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.7 * var(--text-size-multiplier)) !important;
-}
-
-.verse-item .translation,
-.verse .translation {
-    font-size: calc(14px * var(--text-size-multiplier)) !important;
-    line-height: calc(1.75 * var(--text-size-multiplier)) !important;
-}
-
-@media (max-width: 400px) {
-    .verse-item .arabic {
-        font-size: calc(20px * var(--text-size-multiplier)) !important;
-    }
-}
-
-@media (min-width: 481px) {
-    .verse-item .arabic {
-        font-size: calc(28px * var(--text-size-multiplier)) !important;
-    }
-}
-
-/* ============================================
-   TOMBOL INSTALL DI TOP APPBAR
-   ============================================ */
-.install-btn {
-    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%) !important;
-    color: white !important;
-    border-color: transparent !important;
-    animation: pulse-install 2s ease-in-out infinite;
-    position: relative;
-}
-
-.install-btn::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    width: 10px;
-    height: 10px;
-    background: #ef4444;
-    border-radius: 50%;
-    border: 2px solid var(--nav-bg);
-    animation: blink-dot 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse-install {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes blink-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-}
-
-/* ============================================
-   BANNER INSTALL
+   INSTALL BANNER (BARU)
    ============================================ */
 .install-banner {
     position: fixed;
@@ -2805,19 +1525,16 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 14px 16px;
 }
-
 .install-banner.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
     visibility: visible;
 }
-
 .install-banner-inner {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
 .install-banner-logo {
     width: 44px;
     height: 44px;
@@ -2827,31 +1544,26 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-
 .install-banner-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-
 .install-banner-text {
     flex: 1;
     min-width: 0;
 }
-
 .install-banner-title {
     font-size: 13px;
     font-weight: 800;
     letter-spacing: -0.2px;
     margin-bottom: 2px;
 }
-
 .install-banner-sub {
     font-size: 11px;
     opacity: 0.85;
     font-weight: 500;
 }
-
 .install-banner-btn {
     background: #fbbf24;
     color: #78350f;
@@ -2867,11 +1579,7 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     letter-spacing: 0.3px;
     box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
 }
-
-.install-banner-btn:active {
-    transform: scale(0.94);
-}
-
+.install-banner-btn:active { transform: scale(0.94); }
 .install-banner-close {
     background: rgba(255,255,255,0.15);
     border: none;
@@ -2887,13 +1595,44 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     flex-shrink: 0;
     transition: all 0.2s;
 }
-
 .install-banner-close:active {
     transform: scale(0.9);
+    background: rgba(255,255,255,0.25);
 }
 
 /* ============================================
-   MODAL INSTRUKSI INSTALL
+   INSTALL BTN (Top AppBar)
+   ============================================ */
+.install-btn {
+    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%) !important;
+    color: white !important;
+    border-color: transparent !important;
+    animation: pulse-install 2s ease-in-out infinite;
+    position: relative;
+}
+.install-btn::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 2px solid var(--nav-bg);
+    animation: blink-dot 1.5s ease-in-out infinite;
+}
+@keyframes pulse-install {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+@keyframes blink-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ============================================
+   INSTALL MODAL
    ============================================ */
 .install-overlay {
     position: fixed;
@@ -2908,12 +1647,10 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     padding: 20px;
     animation: fadeIn 0.3s ease;
 }
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 .install-modal {
     background: var(--card-bg);
     border-radius: 24px;
@@ -2924,17 +1661,14 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     border: 1px solid var(--border-color);
     animation: slideUpModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 @keyframes slideUpModal {
     from { opacity: 0; transform: translateY(20px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 .install-modal-head {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .install-modal-logo {
     width: 64px;
     height: 64px;
@@ -2945,27 +1679,23 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     box-shadow: 0 8px 24px rgba(15, 118, 110, 0.2);
     border: 3px solid var(--gold-light);
 }
-
 .install-modal-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-
 .install-modal-head h3 {
     font-size: 18px;
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.3px;
 }
-
 .install-modal-steps {
     list-style: none;
     counter-reset: step;
     margin-bottom: 22px;
     padding: 0;
 }
-
 .install-modal-steps li {
     counter-increment: step;
     position: relative;
@@ -2977,7 +1707,6 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     margin-bottom: 8px;
     background: var(--bg-soft);
 }
-
 .install-modal-steps li::before {
     content: counter(step);
     position: absolute;
@@ -2995,12 +1724,10 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     font-size: 12px;
     font-weight: 800;
 }
-
 .install-modal-steps li strong {
     color: var(--text-primary);
     font-weight: 700;
 }
-
 .install-modal-btn {
     width: 100%;
     background: var(--primary-gradient);
@@ -3019,23 +1746,78 @@ body.text-xlarge  { --text-size-multiplier: 1.4 !important; }
     gap: 8px;
     box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
 }
+.install-modal-btn:active { transform: scale(0.96); }
 
-.install-modal-btn:active {
-    transform: scale(0.96);
+body.dark .install-modal { background: #1e293b; border-color: #334155; }
+body.dark .install-modal-steps li { background: rgba(15, 23, 42, 0.5); }
+
+/* ============================================
+   PWA TOAST
+   ============================================ */
+.pwa-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    animation: fadeSlide 0.3s ease;
+    max-width: 90%;
+    text-align: center;
 }
+.pwa-toast.success { background: var(--success-gradient); }
+.pwa-toast.warning { background: var(--gold-gradient); }
+.pwa-toast.info { background: var(--primary-gradient); }
 
-body.dark .install-modal {
-    background: #1e293b;
-    border-color: #334155;
+/* ============================================
+   OFFLINE INDICATOR
+   ============================================ */
+.offline-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--danger-gradient);
+    color: white;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 1000;
+    display: none;
 }
+.offline-indicator.show { display: block; }
 
-body.dark .install-modal-steps li {
-    background: rgba(15, 23, 42, 0.5);
-}
-
+/* ============================================
+   PWA STANDALONE
+   ============================================ */
 @media (display-mode: standalone) {
-    .install-banner,
-    .install-btn {
-        display: none !important;
-    }
+    body { padding-top: env(safe-area-inset-top); }
+    .top-appbar { padding-top: calc(14px + env(safe-area-inset-top)); }
+    .install-banner { display: none !important; }
+    .install-btn { display: none !important; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 380px) {
+    .top-appbar { padding: 12px 16px 10px; }
+    .top-appbar .brand-logo { width: 38px; height: 38px; }
+    .top-appbar .brand-text h1 { font-size: 14px; }
+    .top-appbar .icon-btn { width: 36px; height: 36px; font-size: 14px; }
+    .stat-pill-text strong { font-size: 15px; }
+    .nav-item { font-size: 9px; }
+    .nav-item i { font-size: 18px; }
+}
+
+@media (min-width: 481px) {
+    .app-container { max-width: 520px; }
+    .bottom-nav { max-width: 520px; }
+    .top-appbar .brand-text h1 { font-size: 17px; }
 }
