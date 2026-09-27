@@ -8,61 +8,146 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #f3f0ff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        body { 
+            background: #f8fafc;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(15, 118, 110, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(217, 119, 6, 0.06) 0%, transparent 40%);
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
         .offline-container {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(16px);
-            border-radius: 28px;
+            background: #ffffff;
+            border-radius: 24px;
             padding: 40px 32px;
             max-width: 400px;
             width: 100%;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 32px rgba(15, 118, 110, 0.08);
             animation: fadeSlide 0.5s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .offline-icon { font-size: 80px; color: #7c3aed; margin-bottom: 20px; animation: pulse 2s ease-in-out infinite; }
-        .offline-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #1e1b4b; }
-        .offline-desc { font-size: 16px; color: #4b5563; margin-bottom: 4px; }
-        .offline-sub { font-size: 14px; color: #9ca3af; margin-bottom: 28px; }
+        .offline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0f766e, #f59e0b);
+        }
+        .offline-icon { 
+            font-size: 60px; 
+            color: #0f766e; 
+            margin-bottom: 20px; 
+            animation: pulse 2s ease-in-out infinite;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: rgba(15, 118, 110, 0.1);
+            border-radius: 50%;
+        }
+        .offline-title { 
+            font-size: 24px; 
+            font-weight: 800; 
+            margin-bottom: 8px; 
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+        .offline-desc { 
+            font-size: 14px; 
+            color: #475569; 
+            margin-bottom: 4px; 
+            font-weight: 500;
+        }
+        .offline-sub { 
+            font-size: 13px; 
+            color: #94a3b8; 
+            margin-bottom: 28px; 
+            line-height: 1.5;
+        }
         .offline-btn {
-            background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #6366f1 100%);
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
             color: white;
             border: none;
             padding: 14px 40px;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 8px 30px rgba(124,58,237,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(15, 118, 110, 0.25);
+            transition: all 0.2s;
         }
         .offline-btn:active { transform: scale(0.95); }
-        .offline-list { margin-top: 30px; text-align: left; padding-top: 20px; border-top: 1px solid rgba(128,128,128,0.15); }
-        .offline-list-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; color: #4b5563; border-bottom: 1px solid rgba(128,128,128,0.08); }
+        .offline-list { 
+            margin-top: 30px; 
+            text-align: left; 
+            padding-top: 20px; 
+            border-top: 1px solid #e2e8f0;
+        }
+        .offline-list-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            padding: 10px 0; 
+            color: #475569; 
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+            font-weight: 500;
+        }
         .offline-list-item:last-child { border-bottom: none; }
-        .offline-list-item i { color: #7c3aed; width: 24px; font-size: 18px; }
-        .offline-list-item span { font-size: 14px; }
-        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
-        @keyframes fadeSlide { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .offline-list-item i { 
+            color: #0f766e; 
+            width: 24px; 
+            font-size: 16px; 
+            text-align: center;
+        }
+        @keyframes pulse { 
+            0%,100% { transform: scale(1); opacity: 1; } 
+            50% { transform: scale(1.08); opacity: 0.85; } 
+        }
+        @keyframes fadeSlide { 
+            0% { opacity: 0; transform: translateY(20px); } 
+            100% { opacity: 1; transform: translateY(0); } 
+        }
         @media (prefers-color-scheme: dark) {
-            body { background: #0f0a1a; }
-            .offline-container { background: rgba(30,27,50,0.7); border-color: rgba(255,255,255,0.08); }
-            .offline-title { color: #ede9fe; }
-            .offline-desc { color: #c4b5fd; }
-            .offline-sub { color: #8b7bbd; }
-            .offline-list-item { color: #c4b5fd; }
-            .offline-list-item i { color: #a78bfa; }
+            body { background: #0f172a; }
+            .offline-container { 
+                background: #1e293b; 
+                border-color: #334155; 
+            }
+            .offline-title { color: #f8fafc; }
+            .offline-desc { color: #cbd5e1; }
+            .offline-sub { color: #94a3b8; }
+            .offline-list { border-top-color: #334155; }
+            .offline-list-item { 
+                color: #cbd5e1; 
+                border-bottom-color: #1e293b;
+            }
+            .offline-icon {
+                background: rgba(20, 184, 166, 0.15);
+                color: #5eead4;
+            }
         }
     </style>
 </head>
 <body>
     <div class="offline-container">
-        <div class="offline-icon"><i class="fas fa-wifi-slash"></i></div>
+        <div class="offline-icon"><i class="fas fa-wifi"></i></div>
         <h1 class="offline-title">Tidak Ada Koneksi</h1>
         <p class="offline-desc">Anda sedang offline, tetapi jangan khawatir!</p>
-        <p class="offline-sub">Anda masih bisa membaca bacaan yang sudah di-cache</p>
+        <p class="offline-sub">Bacaan yang sudah tersimpan tetap bisa diakses</p>
         <a href="./" class="offline-btn"><i class="fas fa-home"></i> Buka Dashboard</a>
         <div class="offline-list">
             <div class="offline-list-item"><i class="fas fa-check-circle"></i><span>Data bacaan tersimpan</span></div>
