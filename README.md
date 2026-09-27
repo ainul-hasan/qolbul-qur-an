@@ -1,189 +1,215 @@
 # 📖 Qolbul Qur'an
 
-**Aplikasi Web Mobile untuk Menghafal dan Mengelola Bacaan Qur'an**
+**Aplikasi Bacaan, Wirid & Doa Pondok Pesantren Ainul Hasan**
 
-![Version](https://img.shields.io/badge/version-1.0.0-purple)
+![Version](https://img.shields.io/badge/version-2.0.0-0f766e)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Mobile-lightgrey)
+![PWA](https://img.shields.io/badge/PWA-Ready-success)
 ![Language](https://img.shields.io/badge/language-HTML%20%7C%20CSS%20%7C%20JavaScript-yellow)
 
 ---
 
 ## ✨ Tentang Aplikasi
 
-Qolbul Qur'an adalah aplikasi web mobile yang dirancang untuk membantu umat Muslim dalam menghafal dan mengelola bacaan Al-Qur'an serta wirid harian. Aplikasi ini hadir dengan desain modern berbasis **glassmorphism** dan **gradient ungu** yang elegan, memberikan pengalaman pengguna yang nyaman dan menyenangkan.
+**Qolbul Qur'an** adalah aplikasi web mobile yang dirancang khusus untuk **para alumni, asatidz, jamaah, dan santri** Pondok Pesantren Ainul Hasan dalam mengakses bacaan, wirid, dan doa harian.
 
-> "Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya" - HR. Bukhari
+Aplikasi ini hadir dengan desain modern bertema **hijau islami + emas**, mendukung **mode offline (PWA)**, dan dapat **di-install ke Home Screen** HP Android & iOS.
+
+> _"Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya"_
+> — **HR. Bukhari**
 
 ---
 
 ## 🚀 Fitur Unggulan
 
 ### 📊 Dashboard
-- **Sambutan** - Ucapan Assalamu'alaikum dengan nama hari
-- **Tanggal** - Menampilkan tanggal Masehi dan Hijriyah
-- **Statistik** - Total bacaan, favorit, dan selesai
-- **Progress Hafalan** - Progress bar dengan animasi dan pesan motivasi
-- **Rekomendasi Bacaan** - 4 bacaan acak yang belum selesai
-- **Favorit Teratas** - 3 bacaan favorit teratas
+- Ucapan **Assalamu'alaikum** dengan nama hari
+- Tanggal **Masehi + Hijriah** (API MABIMS/Kemenag)
+- **Statistik** bacaan, favorit, dan selesai
+- **Progress Hafalan** dengan animasi
+- **Quote motivasi harian**
+- **Rekomendasi Bacaan** acak yang belum selesai
+- **Favorit Teratas**
 
 ### 📖 Semua Bacaan
-- **Daftar Lengkap** - Semua bacaan tersedia
-- **Pencarian Realtime** - Cari bacaan dengan cepat
-- **Filter Kategori** - Filter berdasarkan kategori (quran, tawasul, tahlil, dll)
-- **Tombol Favorit** - Tambah/hapus favorit dengan satu klik
-- **Tombol Selesai** - Tandai bacaan yang sudah selesai
+- Daftar lengkap semua bacaan
+- **Pencarian realtime**
+- **Filter kategori** (scroll horizontal)
+- Tombol **❤️ Favorit** dan **✅ Selesai** di setiap item
 
 ### ❤️ Favorit
-- **Daftar Favorit** - Menampilkan semua bacaan favorit
-- **Hapus Favorit** - Hapus dari daftar favorit
+- Daftar bacaan favorit
+- Tambah/hapus favorit dengan satu klik
 
 ### ✅ Selesai
-- **Daftar Selesai** - Menampilkan semua bacaan yang sudah selesai
-- **Batalkan Selesai** - Batalkan status selesai
+- Daftar bacaan yang sudah dihafal
+- Batalkan status selesai kapan saja
 
 ### 📖 Detail Bacaan
-- **Teks Arab** - Tampilan Arab dengan font besar
-- **Latin** - Transliterasi latin
-- **Terjemahan** - Terjemahan Bahasa Indonesia
-- **Tombol Aksi** - Tambah/hapus favorit dan tandai selesai
+- **Teks Arab** dengan font Amiri
+- **Latin** (transliterasi)
+- **Terjemahan** Bahasa Indonesia
+- Tombol aksi Favorit & Selesai
+- **Ukuran teks bisa diubah** (4 pilihan)
 
 ### ⚙️ Pengaturan
-- **Dark Mode** - Tema gelap untuk kenyamanan membaca
-- **Light Mode** - Tema terang default
-- **Ukuran Teks** - 4 pilihan (Kecil, Sedang, Besar, Sangat Besar)
-- **Reset Data** - Reset favorit, selesai, atau semua data
+- **Dark Mode** 🌙
+- **4 ukuran teks**: Kecil, Sedang, Besar, Sangat Besar
+- **Toggle** tampilkan Latin & Terjemahan
+- **Reset** favorit / selesai / semua data
 
-### 🔄 Navigasi
-- **Bottom Navigation** - Navigasi bawah yang modern
-- **Tombol Back HP** - Kembali ke halaman sebelumnya
-- **Konfirmasi Keluar** - Konfirmasi sebelum keluar aplikasi
-
----
-
-## 📸 Tampilan Aplikasi
-
-| Dashboard | Semua Bacaan | Detail Bacaan |
-|-----------|--------------|---------------|
-| Hero dengan gradient | List dengan search & filter | Arab, Latin, Terjemahan |
-| Statistik 3 kartu | Tombol favorit & selesai | Tombol aksi di atas |
-| Progress bar animasi | Klik untuk detail | Kembali dengan tombol back |
+### 📲 PWA (Progressive Web App)
+- **Install ke Home Screen** ala aplikasi native
+- **Offline mode** — bisa dibuka tanpa internet
+- **Icon kustom** di Home Screen
+- **Splash screen** otomatis
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🎨 Desain & Tema
+
+| Elemen | Detail |
+|--------|--------|
+| **Warna Utama** | 🟢 Hijau Islami (`#0f766e`) |
+| **Warna Aksen** | 🟡 Emas Royal (`#d97706`) |
+| **Font Utama** | Inter (modern, clean) |
+| **Font Arab** | Amiri (indah, klasik) |
+| **Icons** | Font Awesome 6 |
+| **Layout** | Mobile-first, max 480px |
+| **Style** | Top AppBar + Bottom Nav ala aplikasi besar |
+
+---
+
+## 🛠️ Teknologi
 
 | Teknologi | Deskripsi |
 |-----------|-----------|
-| **HTML5** | Struktur dasar aplikasi |
-| **CSS3** | Styling dengan glassmorphism, gradient, animasi |
-| **JavaScript ES6** | Logika aplikasi, navigasi, localStorage |
-| **Font Awesome** | Icon modern dan premium |
-| **Google Fonts** | Font Inter yang elegan |
+| **HTML5** | Struktur aplikasi |
+| **CSS3** | Modern styling + animasi |
+| **JavaScript ES6** | Logika & interaksi |
 | **LocalStorage** | Penyimpanan data di perangkat |
+| **Service Worker** | Cache offline & PWA |
+| **Web App Manifest** | Metadata PWA |
+| **MABIMS API** | Kalender Hijriah Indonesia |
+| **Font Awesome** | Icon premium |
+| **Google Fonts** | Inter + Amiri |
 
 ---
 
 ## 📁 Struktur Folder
-
-```
 qolbul-quran/
-├── index.html                 # Single Page App (SPA)
+├── index.html # Aplikasi utama (SPA)
+├── manifest.json # PWA manifest
+├── sw.js # Service Worker
+├── offline.html # Halaman offline fallback
+├── README.md # Dokumentasi ini
+│
 ├── css/
-│   └── style.css              # Stylesheet utama
+│ └── style.css # Stylesheet utama
+│
 ├── js/
-│   ├── data.js                # Data bacaan (isi sendiri)
-│   ├── app.js                 # Aplikasi utama & navigasi
-│   ├── dashboard.js           # Halaman Dashboard
-│   ├── semua.js               # Halaman Semua Bacaan
-│   ├── favorid.js             # Halaman Favorit
-│   ├── selesai.js             # Halaman Selesai
-│   └── pengaturan.js          # Halaman Pengaturan
-├── html/                      # Multi Page files
-│   ├── dashboard.html
-│   ├── semua.html
-│   ├── favorid.html
-│   ├── selesai.html
-│   ├── pengaturan.html
-│   └── detail.html
-├── assest/
-│   └── style.css              # Copy dari css/style.css
-└── README.md                  # Dokumentasi
-```
+│ ├── data.js # Data bacaan (edit di sini!)
+│ ├── app.js # Core aplikasi
+│ ├── dashboard.js # Halaman dashboard
+│ ├── semua.js # Halaman semua bacaan
+│ ├── favorid.js # Halaman favorit
+│ ├── selesai.js # Halaman selesai
+│ ├── pengaturan.js # Halaman pengaturan
+│ └── detail.js # Halaman detail bacaan
+│
+└── icons/
+├── 72x72.png
+├── 96x96.png
+├── 128x128.png
+├── 144x144.png
+├── 152x152.png
+├── 192x192.png
+├── 384x384.png
+└── 512x512.png
 
----
-
-## 💾 Penyimpanan Data (LocalStorage)
-
-| Key | Deskripsi | Format |
-|-----|-----------|--------|
-| `favorit` | ID bacaan favorit | `[1, 3, 5, 7]` |
-| `selesai` | ID bacaan selesai | `[2, 4, 6, 8]` |
-| `theme` | Tema aplikasi | `'light'` atau `'dark'` |
-| `textSize` | Ukuran teks | `'small'`, `'medium'`, `'large'`, `'xlarge'` |
-| `lastDetailId` | ID terakhir dibaca | `7` |
+text
 
 ---
 
 ## 🚀 Cara Menjalankan
 
-### Single Page App (SPA)
+### 🌐 Akses Online (GitHub Pages)
+
+Aplikasi ini sudah di-hosting di GitHub Pages:
+https://ainul-hasan.github.io/qolbul-qur-an/
+
+text
+
+### 💻 Jalankan Lokal (Development)
+
+**Opsi 1: Live Server VS Code (Rekomendasi)**
+1. Install ekstensi **Live Server** di VS Code
+2. Klik kanan `index.html` → **Open with Live Server**
+3. Buka di browser: `http://localhost:5500/`
+
+**Opsi 2: Python HTTP Server**
 ```bash
-1. Buka file index.html di browser
-2. Aplikasi akan langsung berjalan
-```
+python -m http.server 5500
+# Buka: http://localhost:5500/
+Opsi 3: Node.js
 
-### Multi Page
-```bash
-1. Buka folder html/
-2. Buka salah satu file: dashboard.html, semua.html, dll.
-```
+bash
+npx serve -p 5500
+⚠️ PENTING: Jangan buka via file:/// karena PWA tidak akan berfungsi!
 
-### Live Server (Rekomendasi)
-```bash
-# Menggunakan VS Code Live Server
-1. Install ekstensi Live Server
-2. Klik kanan index.html
-3. Pilih "Open with Live Server"
-```
+📲 Cara Install sebagai Aplikasi
+🤖 Android (Chrome)
+Buka aplikasi di Chrome
 
----
+Tunggu 30 detik → banner install muncul
 
-## 📝 Cara Menambah Data Bacaan
+Tap tombol Install
 
-### 1. Buka file `js/data.js`
+Aplikasi akan muncul di Home Screen
 
-### 2. Tambahkan data baru dengan format:
+🍎 iPhone/iPad (Safari)
+Buka aplikasi di Safari (bukan Chrome)
 
-```javascript
+Tap tombol Share ⬆️
+
+Pilih Add to Home Screen
+
+Tap Add
+
+💻 Desktop (Chrome/Edge)
+Buka aplikasi
+
+Klik ikon install di address bar
+
+Atau menu → Install Qolbul Qur'an
+
+📝 Cara Menambah Bacaan Baru
+1. Buka js/data.js
+2. Tambahkan data di array window.READINGS_DATA
+javascript
 {
-    id: 16,  // ID UNIK (increment dari ID terakhir)
-    title: "Nama Bacaan",
-    subtitle: "Subtitle",
-    category: "kategori",  // quran, tawasul, tahlil, wirid, dll
+    id: 12,                       // ID unik (increment dari terakhir)
+    title: "Nama Bacaan",         // Judul
+    subtitle: "Subtitle",         // Sub-judul (opsional)
     verses: [
         {
-            arabic: "نص عربي",
-            latin: "Teks Latin",
-            translation: "Terjemahan"
-        },
+            arabic: "نص عربي",     // Teks Arab
+            latin: "Teks latin",  // Latin (opsional)
+            translation: "Terjemahan" // Terjemahan (opsional)
+        }
         // Tambahkan ayat lainnya...
     ],
-    totalVerses: 5  // Jumlah total ayat
+    totalVerses: 1                // Total ayat
 }
-```
+3. Simpan file & refresh browser
+Contoh lengkap:
 
-### 3. Simpan file dan refresh browser
-
-### Contoh Penambahan:
-
-```javascript
-// Di dalam window.READINGS_DATA = [ ... ]
+javascript
 {
-    id: 16,
+    id: 12,
     title: "Surah Al-Kahfi",
     subtitle: "الكهف",
-    category: "quran",
     verses: [
         {
             arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَنْزَلَ عَلَى عَبْدِهِ الْكِتَابَ",
@@ -193,96 +219,103 @@ qolbul-quran/
     ],
     totalVerses: 1
 }
-```
+💾 Penyimpanan Data
+Data pengguna disimpan di LocalStorage browser:
 
----
+Key	Deskripsi	Format
+favorit	ID bacaan favorit	[1, 3, 5, 7]
+selesai	ID bacaan selesai	[2, 4, 6, 8]
+theme	Tema aplikasi	'light' / 'dark'
+textSize	Ukuran teks	'small' / 'medium' / 'large' / 'xlarge'
+showLatin	Tampilkan latin	'true' / 'false'
+showTranslation	Tampilkan terjemahan	'true' / 'false'
+hijriDate	Cache tanggal Hijriah	'17 Rabiul Akhir 1448 H'
+lastDetailId	ID terakhir dibaca	7
+🔧 Pengembangan
+Menambah Kategori Baru
+Cukup tambahkan di js/data.js dengan category baru:
 
-## 🎨 Desain & UI
+javascript
+{
+    id: 13,
+    title: "Bacaan Baru",
+    category: "Doa Harian",  // Kategori baru
+    verses: [...],
+    totalVerses: 1
+}
+Filter di halaman Semua akan otomatis muncul.
 
-### Glassmorphism
-- Efek kaca dengan blur `16px`
-- Background transparan dengan warna putih/ungu
-- Shadow halus untuk kedalaman
+Mengganti Warna Tema
+Edit css/style.css, bagian :root:
 
-### Gradient Ungu
-- Dominasi warna ungu pastel
-- Gradient `#7c3aed` ke `#4f46e5`
-- Aksen pada hero, tombol, dan elemen penting
+css
+:root {
+    --primary: #0f766e;         /* Warna utama */
+    --primary-light: #14b8a6;   /* Warna utama muda */
+    --gold: #d97706;            /* Warna aksen emas */
+    --gold-light: #fbbf24;      /* Emas muda */
+}
+Mengganti Logo
+Ganti file icons/128x128.png dengan logo baru (persegi, background transparan).
 
-### Animasi
-- **Loading Screen** - Progress bar dengan animasi
-- **Fade Slide** - Transisi antar halaman
-- **Shimmer** - Efek kilau pada progress bar
-- **Hover/Active** - Micro interaction pada tombol
+Update Cache Service Worker
+Setiap kali update aplikasi, naikkan versi cache di sw.js:
 
-### Responsive
-- Mendukung semua ukuran layar (320px - 430px+)
-- Optimal untuk Android dan iPhone
-- Touch-friendly dengan ukuran tombol yang nyaman
+javascript
+const CACHE_NAME = 'qolbul-quran-v2.0.1'; // naikkan versi
+Ini memastikan user mendapat versi terbaru.
 
----
+🐛 Troubleshooting
+Aplikasi tidak muncul saat dibuka offline?
+Solusi: Pastikan sudah dibuka minimal 1x dengan internet agar Service Worker bisa caching.
 
-## 📱 Kompatibilitas
+Banner install tidak muncul?
+Cek list berikut:
 
-| Platform | Browser | Status |
-|----------|---------|--------|
-| Android | Chrome, Firefox, Samsung Internet | ✅ |
-| iOS | Safari, Chrome | ✅ |
-| Desktop | Chrome, Firefox, Edge, Safari | ✅ |
-| Offline | Setelah pertama kali dibuka | ✅ |
+□ URL pakai HTTPS atau localhost (bukan file:/// atau 127.0.0.1)
+□ Icon 192x192 & 512x512 sudah ada
+□ Service Worker aktif (cek di DevTools → Application)
+□ Tunggu 30 detik + interaksi dengan halaman
+Data hilang setelah refresh?
+Solusi: Data disimpan di LocalStorage. Jangan clear cache browser.
 
----
+Tampilan lama masih muncul?
+Solusi: Hard refresh dengan Ctrl + Shift + R, atau:
 
-## 🔧 Pengembangan
+Buka DevTools (F12)
 
-### Menambahkan Fitur Baru
+Tab Application → Service Workers
 
-1. **Tambah halaman baru**:
-   - Buat file di `js/` (contoh: `halaman.js`)
-   - Tambahkan fungsi render di `app.js`
+Klik Unregister
 
-2. **Tambah kategori baru**:
-   - Tambahkan di `data.js` dengan category baru
-   - Filter akan otomatis muncul
+Reload halaman
 
-3. **Ubah tampilan**:
-   - Edit `css/style.css`
-   - Gunakan variabel CSS untuk konsistensi
+Reset semua data?
+Solusi: Buka Pengaturan → Data → Reset Semua Data
 
-### Debugging
-```javascript
-// Buka Console Browser (F12)
-console.log('Data:', window.READINGS_DATA);
-console.log('Favorit:', localStorage.getItem('favorit'));
-console.log('Selesai:', localStorage.getItem('selesai'));
-```
+📊 Kompatibilitas
+Platform	Browser	Status
+🤖 Android	Chrome, Firefox, Samsung Internet	✅
+🍎 iOS	Safari, Chrome	✅
+💻 Desktop	Chrome, Firefox, Edge, Safari	✅
+📴 Offline	Setelah first load	✅
+📲 PWA Install	Android, iOS, Desktop	✅
+🎯 Roadmap Fitur
+Fitur yang direncanakan untuk update selanjutnya:
 
----
-
-## ❓ FAQ
-
-### Q: Bagaimana cara reset semua data?
-**A:** Buka Pengaturan > Data > Reset Semua Data
-
-### Q: Data hilang setelah refresh?
-**A:** Tidak, semua data tersimpan di localStorage
-
-### Q: Bagaimana cara menambahkan surah baru?
-**A:** Edit file `js/data.js` dan tambahkan data baru
-
-### Q: Aplikasi tidak bisa dibuka offline?
-**A:** Pastikan sudah dibuka sekali dengan koneksi internet
-
-### Q: Bagaimana cara mengganti ukuran teks?
-**A:** Buka Pengaturan > Ukuran Teks > Pilih ukuran
-
----
-
-## 📄 Lisensi
-
+□ 📢 Pengumuman Pondok
+□ 🕌 Jadwal Kajian Rutin
+□ 📖 Materi Khutbah Jumat
+□ 👥 Direktori Kontak Asatidz
+□ 🕌 Jadwal Waktu Sholat
+□ 📅 Kalender Kegiatan Pondok
+□ 💝 Info Infaq & Donasi
+□ 🌙 Hijriah Countdown
+📄 Lisensi
+text
 MIT License
 
-Copyright (c) 2026 Qolbul Qur'an
+Copyright (c) 2026 Qolbul Qur'an · Pondok Pesantren Ainul Hasan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -293,121 +326,39 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+🙏 Kontribusi
+Kontribusi selalu diterima! Untuk berkontribusi:
 
----
+Fork repository ini
 
-## 🙏 Kontribusi
+Buat branch baru: git checkout -b fitur-baru
 
-Kontribusi selalu diterima! Silakan buat pull request atau laporkan issue.
+Commit perubahan: git commit -m 'Tambah fitur baru'
 
-### Cara Berkontribusi:
-1. Fork repository
-2. Buat branch baru (`git checkout -b fitur-baru`)
-3. Commit perubahan (`git commit -m 'Tambah fitur baru'`)
-4. Push ke branch (`git push origin fitur-baru`)
-5. Buat Pull Request
+Push ke branch: git push origin fitur-baru
 
----
+Buat Pull Request
 
-## 📞 Kontak
+📞 Kontak & Dukungan
+🏫 Pondok Pesantren Ainul Hasan
 
-- **Email**: support@qolbulquran.com
-- **Website**: https://qolbulquran.com
-- **GitHub**: https://github.com/qolbulquran
+📍 Maron, Probolinggo, Jawa Timur
 
----
+🌐 Website: GitHub Repo
 
-## 🙌 Terima Kasih
+📧 Email: support@qolbulquran.com
 
-Terima kasih telah menggunakan Qolbul Qur'an. Semoga aplikasi ini bermanfaat untuk meningkatkan hafalan dan kecintaan kita kepada Al-Qur'an.
+🙌 Terima Kasih
+Terima kasih telah menggunakan Qolbul Qur'an. Semoga aplikasi ini bermanfaat untuk meningkatkan hafalan, bacaan, dan kecintaan kita kepada Al-Qur'an.
 
-> "Dan sesungguhnya telah Kami mudahkan Al-Qur'an untuk pelajaran, maka adakah orang yang mau mengambil pelajaran?" - QS. Al-Qamar: 17
+"Dan sesungguhnya telah Kami mudahkan Al-Qur'an untuk pelajaran, maka adakah orang yang mau mengambil pelajaran?"
+— QS. Al-Qamar: 17
 
----
-
-**© 2026 Qolbul Qur'an · Hafalan Qur'an**
-
----
-
-## 📊 Version History
-
-| Version | Tanggal | Perubahan |
-|---------|---------|-----------|
-| 1.0.0 | 2026-06-18 | Initial release |
-| 1.0.1 | 2026-06-18 | Fix back button navigation |
-| 1.0.2 | 2026-06-18 | Add text size feature |
-| 1.0.3 | 2026-06-18 | Add rekomendasi & favorit teratas |
-
----
-```
-
----
-
-## 📄 README.md (VERSI SINGKAT)
-
-Jika Anda menginginkan versi yang lebih ringkas:
-
-```markdown
-# 📖 Qolbul Qur'an
-
-Aplikasi Web Mobile untuk Menghafal dan Mengelola Bacaan Qur'an
-
-## Fitur
-- 📊 Dashboard dengan statistik dan progress
-- 📖 Semua bacaan dengan pencarian dan filter
-- ❤️ Favorit dan ✅ Selesai
-- ⚙️ Dark/Light mode & ukuran teks
-- 💾 Penyimpanan localStorage
-
-## Teknologi
-- HTML5, CSS3, JavaScript ES6
-- Glassmorphism & Gradient Ungu
-- Font Awesome & Google Fonts
-
-## Cara Menjalankan
-Buka `index.html` di browser
-
-## Struktur Folder
-```
-qolbul-quran/
-├── index.html
-├── css/style.css
-├── js/
-│   ├── data.js
-│   ├── app.js
-│   ├── dashboard.js
-│   ├── semua.js
-│   ├── favorid.js
-│   ├── selesai.js
-│   └── pengaturan.js
-├── html/
-│   ├── dashboard.html
-│   ├── semua.html
-│   ├── favorid.html
-│   ├── selesai.html
-│   ├── pengaturan.html
-│   └── detail.html
-└── README.md
-```
-
-## Cara Menambah Data
-Edit `js/data.js` dengan format:
-```javascript
-{
-    id: 16,
-    title: "Nama Bacaan",
-    subtitle: "Subtitle",
-    category: "kategori",
-    verses: [
-        { arabic: "نص", latin: "Latin", translation: "Terjemahan" }
-    ],
-    totalVerses: 1
-}
-```
-
-© 2026 Qolbul Qur'an · Hafalan Qur'an
-```
-
----
-
-Pilih salah satu versi README.md yang Anda suka. Versi lengkap lebih detail dan profesional, sedangkan versi singkat lebih padat dan mudah dibaca.
+📊 Version History
+Version	Tanggal	Perubahan
+2.0.0	2026-09-28	🎨 Redesign total (hijau islami + emas), Top AppBar, PWA install, Kalender Hijriah, fix teks Arab
+1.0.3	2026-06-18	Tambah rekomendasi & favorit teratas
+1.0.2	2026-06-18	Tambah fitur ukuran teks
+1.0.1	2026-06-18	Fix back button navigation
+1.0.0	2026-06-18	Initial release
+© 2026 Qolbul Qur'an · Pondok Pesantren Ainul Hasan
