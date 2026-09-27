@@ -2,7 +2,7 @@
 // QOLBUL QUR'AN - SERVICE WORKER v2.0
 // ============================================
 
-const CACHE_NAME = 'qolbul-quran-v2.0.0';
+const CACHE_NAME = 'qolbul-quran-v2.0.1';
 
 const ASSETS = [
   './',
