@@ -1,8 +1,7 @@
 // ============================================
-// QOLBUL QUR'AN - MAIN APPLICATION
+// QOLBUL QUR'AN - MAIN APPLICATION v2.0
 // ============================================
 
-// Variabel untuk menyimpan history navigasi
 var navigationHistory = ['dashboard'];
 var currentPage = 'dashboard';
 var currentData = null;
@@ -14,14 +13,12 @@ var currentData = null;
 let deferredPrompt = null;
 let installBannerShown = false;
 
-// Deteksi PWA install
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     showInstallBanner();
 });
 
-// Deteksi sudah terinstall
 window.addEventListener('appinstalled', () => {
     console.log('[PWA] App installed successfully');
     hideInstallBanner();
@@ -88,12 +85,12 @@ function hideInstallBanner() {
 // ============================================
 
 window.addEventListener('online', () => {
-    console.log('[PWA] Online - refreshing data');
+    console.log('[PWA] Online');
     showPwaToast('Kembali online! 🎉', 'success');
 });
 
 window.addEventListener('offline', () => {
-    console.log('[PWA] Offline - using cached data');
+    console.log('[PWA] Offline');
     showPwaToast('Mode offline - data tersimpan', 'warning');
 });
 
@@ -109,11 +106,32 @@ function showPwaToast(message, type = 'info') {
 }
 
 // ============================================
+// VISIBILITY SETTINGS (LATIN & TERJEMAHAN)
+// ============================================
+
+function applyVisibilitySettings() {
+    var showLatin = localStorage.getItem('showLatin') !== 'false';
+    var showTranslation = localStorage.getItem('showTranslation') !== 'false';
+    
+    if (!showLatin) {
+        document.body.classList.add('hide-latin');
+    } else {
+        document.body.classList.remove('hide-latin');
+    }
+    
+    if (!showTranslation) {
+        document.body.classList.add('hide-translation');
+    } else {
+        document.body.classList.remove('hide-translation');
+    }
+}
+
+// ============================================
 // DOM READY
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Hide loading screen
+    // Hide loading screen (kalau ada)
     setTimeout(function() {
         var loading = document.getElementById('loadingScreen');
         if (loading) loading.classList.add('hidden');
@@ -123,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTheme();
     initTextSize();
     
-    // ===== TERAPKAN SETTING LATIN & TERJEMAHAN =====
+    // Terapkan setting latin & terjemahan
     applyVisibilitySettings();
 
     // Navigation
@@ -135,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Handle Back Button (Android/iOS)
+    // Handle Back Button
     window.addEventListener('popstate', function(event) {
         if (event.state && event.state.page) {
             handleBackNavigation(event.state.page, event.state.data);
@@ -173,26 +191,39 @@ function navigateTo(page, data) {
     if (activeNav) activeNav.classList.add('active');
 
     var content = document.getElementById('content');
+    if (!content) return;
+
     switch(page) {
-        case 'dashboard': renderDashboard(content); break;
-        case 'semua': renderSemua(content); break;
-        case 'favorid': renderFavorid(content); break;
-        case 'selesai': renderSelesai(content); break;
-        case 'pengaturan': renderPengaturan(content); break;
+        case 'dashboard': 
+            if (typeof renderDashboard === 'function') renderDashboard(content); 
+            break;
+        case 'semua': 
+            if (typeof renderSemua === 'function') renderSemua(content); 
+            break;
+        case 'favorid': 
+            if (typeof renderFavorid === 'function') renderFavorid(content); 
+            break;
+        case 'selesai': 
+            if (typeof renderSelesai === 'function') renderSelesai(content); 
+            break;
+        case 'pengaturan': 
+            if (typeof renderPengaturan === 'function') renderPengaturan(content); 
+            break;
         case 'detail': 
             if (data) {
-                renderDetail(content, data);
+                if (typeof renderDetail === 'function') renderDetail(content, data);
                 localStorage.setItem('lastDetailId', data);
             } else {
                 var lastId = localStorage.getItem('lastDetailId');
                 if (lastId) {
-                    renderDetail(content, parseInt(lastId));
+                    if (typeof renderDetail === 'function') renderDetail(content, parseInt(lastId));
                 } else {
                     navigateTo('semua');
                 }
             }
             break;
-        default: content.innerHTML = '<p>Halaman tidak ditemukan</p>';
+        default: 
+            content.innerHTML = '<p>Halaman tidak ditemukan</p>';
     }
 }
 
@@ -253,42 +284,39 @@ function showExitConfirmation() {
         align-items: center;
         justify-content: center;
         z-index: 9999;
-        animation: fadeSlide 0.3s ease;
     `;
 
     overlay.innerHTML = `
         <div style="
             background: var(--card-bg);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border-radius: 28px;
             padding: 32px 28px;
             max-width: 320px;
             width: 90%;
             text-align: center;
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--border-color);
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         ">
             <div style="font-size: 48px; margin-bottom: 16px; color: var(--primary);">
                 <i class="fas fa-book-quran"></i>
             </div>
-            <h3 style="font-size: calc(20px * var(--text-size-multiplier)); font-weight: 700; margin-bottom: 8px; color: var(--text-primary);">
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text-primary);">
                 Keluar dari Aplikasi?
             </h3>
-            <p style="font-size: calc(14px * var(--text-size-multiplier)); color: var(--text-secondary); margin-bottom: 20px;">
+            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">
                 Apakah Anda yakin ingin keluar dari Qolbul Qur'an?
             </p>
             <div style="display: flex; gap: 12px; justify-content: center;">
                 <button onclick="closeExitConfirmation()" style="
                     background: var(--card-bg);
-                    border: 1px solid var(--glass-border);
+                    border: 1px solid var(--border-color);
                     border-radius: 40px;
                     padding: 12px 32px;
-                    font-size: calc(14px * var(--text-size-multiplier));
+                    font-size: 14px;
                     font-weight: 600;
                     cursor: pointer;
                     color: var(--text-primary);
-                    transition: 0.2s;
                     flex: 1;
                 ">
                     Batal
@@ -299,10 +327,9 @@ function showExitConfirmation() {
                     border: none;
                     border-radius: 40px;
                     padding: 12px 32px;
-                    font-size: calc(14px * var(--text-size-multiplier));
+                    font-size: 14px;
                     font-weight: 600;
                     cursor: pointer;
-                    transition: 0.2s;
                     flex: 1;
                 ">
                     Keluar
@@ -409,3 +436,34 @@ function getDataById(id) {
     }
     return null;
 }
+
+// ============================================
+// EXPORT SEMUA FUNGSI KE WINDOW (WAJIB!)
+// ============================================
+
+window.navigateTo = navigateTo;
+window.handleBackButton = handleBackButton;
+window.handleBackNavigation = handleBackNavigation;
+window.closeExitConfirmation = closeExitConfirmation;
+
+window.getDataById = getDataById;
+window.getFavorit = getFavorit;
+window.setFavorit = setFavorit;
+window.getSelesai = getSelesai;
+window.setSelesai = setSelesai;
+window.toggleFavorit = toggleFavorit;
+window.toggleSelesai = toggleSelesai;
+window.getAllData = getAllData;
+window.getData = getData;
+window.setData = setData;
+
+window.initTheme = initTheme;
+window.toggleTheme = toggleTheme;
+window.setTextSize = setTextSize;
+window.initTextSize = initTextSize;
+window.applyVisibilitySettings = applyVisibilitySettings;
+window.showPwaToast = showPwaToast;
+
+window.getCurrentPage = function() { return currentPage; };
+
+console.log('[App] Semua fungsi berhasil di-export ke window');
