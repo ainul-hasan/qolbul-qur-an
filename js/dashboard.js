@@ -197,6 +197,92 @@ function renderDashboard(container) {
         });
         html += '</div>';
     }
+    
+    
+    // ============================================
+    // KALENDER HIJRIAH - MABIMS.DEV API
+    // ============================================
+
+    var _kalenderState = {
+        offsetBulan: 0,
+        todayHijri: null,
+        todayMasehi: null
+    };
+
+    function initKalenderHijriah() {
+        var todayMasehi = new Date();
+        _kalenderState.todayMasehi = todayMasehi;
+
+        fetch('https://api.mabims.dev/api/v1/today')
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(res) {
+                if (res && res.output && res.output.day && res.output.month_name && res.output.year) {
+                    _kalenderState.todayHijri = {
+                        day: res.output.day,
+                        month: res.output.month,
+                        month_name: res.output.month_name,
+                        year: res.output.year
+                    };
+                    renderKalenderBulan();
+                } else {
+                    throw new Error('Struktur tidak dikenali');
+                }
+            })
+            .catch(function(err) {
+                console.warn('[Kalender] Gagal:', err.message);
+                _kalenderState.todayHijri = {
+                    day: 1, month: 1, month_name: 'Muharram', year: 1448
+                };
+                renderKalenderBulan();
+            });
+    }
+
+    function changeKalenderBulan(delta) {
+        _kalenderState.offsetBulan += delta;
+        renderKalenderBulan();
+    }
+
+    function renderKalenderBulan() {
+        var grid = document.getElementById('kalenderGrid');
+        var monthLabel = document.getElementById('kalenderMonthLabel');
+        if (!grid || !_kalenderState.todayHijri) return;
+
+        var th = _kalenderState.todayHijri;
+        var targetMonth = th.month + _kalenderState.offsetBulan;
+        var targetYear = th.year;
+        while (targetMonth < 1) { targetMonth += 12; targetYear -= 1; }
+        while (targetMonth > 12) { targetMonth -= 12; targetYear += 1; }
+
+        var namaBulan = getNamaBulanHijriah(targetMonth);
+        monthLabel.textContent = namaBulan + ' ' + targetYear + ' H';
+
+        var totalHari = 30;
+        var kolomAwal = (th.day - 1) % 7;
+
+        var html = '';
+        for (var k = 0; k < kolomAwal; k++) {
+            html += '<span class="kalender-day empty"></span>';
+        }
+        for (var d = 1; d <= totalHari; d++) {
+            var isToday = (_kalenderState.offsetBulan === 0) && (d === th.day);
+            var cls = 'kalender-day' + (isToday ? ' today' : '');
+            html += '<span class="' + cls + '">' + d + '</span>';
+        }
+        grid.innerHTML = html;
+    }
+
+    function getNamaBulanHijriah(bulan) {
+        var nama = [
+            'Muharram', 'Safar', 'Rabiul Awal', 'Rabiul Akhir',
+            'Jumadil Awal', 'Jumadil Akhir', 'Rajab', 'Syaban',
+            'Ramadan', 'Syawal', 'Zulkaidah', 'Zulhijjah'
+        ];
+        return nama[bulan - 1] || '—';
+    }
+    
 
     container.innerHTML = html;
 }
