@@ -1,8 +1,8 @@
 // ============================================
-// QOLBUL QUR'AN - SERVICE WORKER
+// QOLBUL QUR'AN - SERVICE WORKER v2.0
 // ============================================
 
-const CACHE_NAME = 'qolbul-quran-v1.0.0';
+const CACHE_NAME = 'qolbul-quran-v2.0.0';
 
 const ASSETS = [
   './',
@@ -18,12 +18,6 @@ const ASSETS = [
   './js/selesai.js',
   './js/pengaturan.js',
   './js/detail.js',
-  './html/dashboard.html',
-  './html/semua.html',
-  './html/favorid.html',
-  './html/selesai.html',
-  './html/pengaturan.html',
-  './html/detail.html',
   './icons/72x72.png',
   './icons/96x96.png',
   './icons/128x128.png',
@@ -39,18 +33,23 @@ const ASSETS = [
 // ============================================
 
 self.addEventListener('install', event => {
+  console.log('[SW] Installing v2.0.0...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('[SW] Caching assets...');
-        return cache.addAll(ASSETS)
-          .then(() => {
-            console.log('[SW] All assets cached');
-            return self.skipWaiting();
+        // Caching satu-satu agar kalau ada yang gagal, yang lain tetap lanjut
+        return Promise.all(
+          ASSETS.map(url => {
+            return cache.add(url).catch(err => {
+              console.warn('[SW] Failed to cache:', url, err.message);
+            });
           })
-          .catch(err => {
-            console.log('[SW] Cache failed:', err);
-          });
+        );
+      })
+      .then(() => {
+        console.log('[SW] Install complete');
+        return self.skipWaiting();
       })
   );
 });
@@ -60,11 +59,15 @@ self.addEventListener('install', event => {
 // ============================================
 
 self.addEventListener('activate', event => {
+  console.log('[SW] Activating...');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
+          .map(name => {
+            console.log('[SW] Deleting old cache:', name);
+            return caches.delete(name);
+          })
       );
     }).then(() => {
       console.log('[SW] Activated');
@@ -74,26 +77,31 @@ self.addEventListener('activate', event => {
 });
 
 // ============================================
-// FETCH
+// FETCH - Cache First untuk same-origin, Network First untuk external
 // ============================================
 
 self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // Skip non-GET requests
+  // Skip non-GET
   if (request.method !== 'GET') {
     event.respondWith(fetch(request));
     return;
   }
 
-  // Handle same-origin requests
+  // Skip chrome-extension
+  if (url.protocol === 'chrome-extension:') {
+    return;
+  }
+
+  // ===== SAME ORIGIN: Cache First =====
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(request)
         .then(cached => {
           if (cached) {
-            // Refresh cache in background
+            // Refresh cache di background
             fetch(request).then(response => {
               if (response && response.status === 200) {
                 caches.open(CACHE_NAME).then(cache => {
@@ -103,6 +111,7 @@ self.addEventListener('fetch', event => {
             }).catch(() => {});
             return cached;
           }
+
           return fetch(request)
             .then(response => {
               if (response && response.status === 200) {
@@ -114,22 +123,25 @@ self.addEventListener('fetch', event => {
               return response;
             })
             .catch(() => {
-              // Fallback untuk HTML
-              if (url.pathname.includes('/html/')) {
-                return caches.match('./html/dashboard.html');
+              // Fallback untuk HTML → offline page
+              if (request.headers.get('accept') && request.headers.get('accept').includes('text/html')) {
+                return caches.match('./offline.html');
               }
-              return caches.match('./offline.html');
             });
         })
     );
     return;
   }
 
-  // Handle external requests (fonts, CDN)
+  // ===== EXTERNAL (fonts, CDN, API): Network First =====
   event.respondWith(
     fetch(request)
       .then(response => {
-        if (response && response.status === 200) {
+        // Cache font & CDN
+        if (response && response.status === 200 && 
+            (url.hostname.includes('fonts.googleapis') || 
+             url.hostname.includes('fonts.gstatic') ||
+             url.hostname.includes('cdnjs.cloudflare'))) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => {
             cache.put(request, clone);
@@ -138,7 +150,20 @@ self.addEventListener('fetch', event => {
         return response;
       })
       .catch(() => {
+        // Fallback ke cache kalau offline
         return caches.match(request);
       })
   );
 });
+
+// ============================================
+// MESSAGE - Handle skipWaiting dari client
+// ============================================
+
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+console.log('[SW] Qolbul Qur\'an SW loaded');
