@@ -186,9 +186,9 @@ window.READINGS_DATA = [
         translation: "Sungguh, Kami benar-benar telah mengutus Musa dengan (membawa) ayat-ayat (mukjizat) Kami dan keterangan yang nyata. (Hud: 96)"
       },
       {
-        arabic: "إِذْ قَالَ لِأَبِيهِ يَٰٓأَبَتِ إِنِّي قَدْ رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ رَأَيْتُهُمْ لِي سَاجِدِينَ ۝٤",
-        latin: "Idz qala li abihi ya abati inni qad ra'aitu ahada 'asyara kaukaban wasy syamsa wal qamara ra'aituhum li sajidin",
-        translation: "(Ingatlah) ketika Yusuf berkata kepada ayahnya (Ya'qub), 'Wahai ayahku, sesungguhnya aku telah (bermimpi) melihat sebelas bintang, matahari, dan bulan. Aku melihat semuanya sujud kepadaku.' (Yusuf: 4)"
+        arabic: "اِذْ قَالَ يُوْسُفُ لِاَبِيْهِ يٰٓاَبَتِ اِنِّيْ رَاَيْتُ اَحَدَ عَشَرَ كَوْكَبًا وَّالشَّمْسَ وَالْقَمَرَ رَاَيْتُهُمْ لِيْ سٰجِدِيْنَ ۝٤",
+        latin: "idz qâla yûsufu li'abîhi yâ abati innî ra'aitu aḫada ‘asyara kaukabaw wasy-syamsa wal-qamara ra'aituhum lî sâjidîn",
+        translation: "(Ingatlah) ketika Yusuf berkata kepada ayahnya (Ya‘qub), 'Wahai ayahku, sesungguhnya aku telah (bermimpi) melihat sebelas bintang, matahari, dan bulan. Aku melihat semuanya sujud kepadaku.'"
       },
       {
         arabic: "سَلَامٌ عَلَيْكُمْ بِمَا صَبَرْتُمْ ۚ فَنِعْمَ عُقْبَى الدَّارِ ۝٢٤",
@@ -611,9 +611,9 @@ window.READINGS_DATA = [
         translation: "Tidakkah dia mengetahui bahwa sesungguhnya Allah melihat? (Al-'Alaq: 14)"
       },
       {
-        arabic: "مِنْ أَلْفِ شَهْرٍ ۝ تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا",
-        latin: "Min alfi syahr. Tanazzalul malaa'ikatu war ruuhu fiihaa",
-        translation: "Lebih baik daripada seribu bulan. Pada malam itu turun para malaikat dan Ruh (Jibril). (Al-Qadr/97:3-4)"
+        arabic: "خَيْرٌ مِّنْ اَلْفِ شَهْرٍۗ ۝٣تَنَزَّلُ الْمَلٰۤىِٕكَةُ وَالرُّوْحُ فِيْهَا بِاِذْنِ رَبِّهِمْۚ مِنْ كُلِّ اَمْرٍۛ ۝٤",
+        latin: "khairum min alfi syahr. tanazzalul-malâ'ikatu war-rûḫu fîhâ bi'idzni rabbihim, ming kulli amr",
+        translation: "lebih baik daripada seribu bulan.Pada malam itu turun para malaikat dan Rūḥ (Jibril) dengan izin Tuhannya untuk mengatur semua urusan. (Al-Qadr: 3-4)"
       },
       {
         arabic: "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ",
@@ -621,9 +621,9 @@ window.READINGS_DATA = [
         translation: "Padahal mereka hanya diperintah menyembah Allah dengan ikhlas menaati-Nya semata-mata karena (menjalankan) agama. (Al-Bayyinah/98:5)"
       },
       {
-        arabic: "يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا لِيُرَوْا أَعْمَالَهُمْ",
-        latin: "Yauma'idzin yashdurun naasu asytaatan liyuraw a'maalahum",
-        translation: "Pada hari itu manusia keluar dari kuburnya dalam keadaan berkelompok-kelompok untuk diperlihatkan kepada mereka balasan semua perbuatannya. (Az-Zalzalah/99:6)"
+        arabic: "اَشْتَاتًا ەۙ لِّيُرَوْا اَعْمَالَهُمْۗ ۝٦",
+        latin: "asytâtal liyurau a‘mâlahum",
+        translation: "Mereka keluar dalam keadaan berkelompok-kelompok agar diperlihatkan kepada mereka (balasan) amal-amal mereka. (Az-Zalzalah/99:6)"
       },
       {
         arabic: "وَإِنَّهُ لِحُبِّ الْخَيْرِ لَشَدِيدٌ",
@@ -779,9 +779,9 @@ window.READINGS_DATA = [
             translation: "Tidak ada tuhan selain Engkau, Maha Suci Engkau, sesungguhnya aku termasuk orang-orang yang zalim (7 kali)."
         },
         {
-            arabic: "أَنَا مَعَكُمَا أَسْمَعُ وَأَرَىٰ لَا تَخَافَا وَلَا تَحْزَنَا أَنْتُمَا تَحْتَ الْكَعْبَةِ (٧×)",
-            latin: "Anaa ma'akumaa asma'u wa araa, laa takhaafaa wa laa tahzanaa antumaa tahtal ka'bah (7x)",
-            translation: "Aku bersamamu, Aku mendengar dan melihat, janganlah kamu berdua takut dan bersedih, kamu berdua di bawah Ka'bah (7 kali)."
+            arabic: "اَنَا مُنْكَرٌ وَنَكِيرٌ لَا تَخَفْ وَلَا تَحْزَنْ أَمْنَعْ تَحْتَ اْلكَعْبَةِ (٧×)",
+            latin: "Ana Munkarun wa Nakīrun, lā takhaf wa lā taḥzan, amna‘ taḥtal-ka‘bahti. (7x)",
+            translation: " (7 kali)."
         },
         {
             arabic: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ وَإِنَّمَا تُوَفَّوْنَ أُجُورَكُمْ يَوْمَ الْقِيَامَةِ (٧×)",
@@ -1113,6 +1113,11 @@ window.READINGS_DATA = [
           arabic: "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ بَدْرِ الدُّجَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
           latin: "Allâhumma shalli afdlalash-shalati ‘alâ as‘adi makhlûqôtika badrid-dujâ sayyidinâ Muḫammadin wa ‘alâ âlihi wa shaḫbihi wa sallim, ‘adada ma‘lûmâtika wa midâda kalimâtika kullamâ dzakaradz-dzâkirûna wa ghafala ‘an dzikrikal-ghâfilûn",
           translation: "Ya Allah, tambahkanlah rahmat dan kesejahteraan untuk makhluk paling bahagia, purnama kegelapan, pemimpin dan tuan kami, Nabi Muhammad ﷺ, serta keluarganya, sebanyak pengetahuan-Mu dan sebanyak tinta kalimat-kalimat-Mu pada saat dzikir orang-orang yang ingat dan pada saat lengah orang-orang yang lalai berzikir kepada-Mu."
+        },
+        {
+          arabic: "اَللّٰهُمَّ صَلِّ أَفْضَلَ الصَّلَاةِ عَلَى أَسْعَدِ مَخْلُوْقَاتِكَ شَمْسِ الضُّحَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهِ وَصَحْبِهِ وَسَلِّمْ، عَدَدَ مَعْلُوْمَاتِكَ وَمِدَادَ كَلِمَاتِكَ كُلَّمَا ذَكَرَكَ الذَّاكِرُوْنَ وَغَفَلَ عَنْ ذِكْرِكَ الْغَافِلُوْنَ",
+          latin: "Allaahumma sholli afdholash sholaati ‘alaa as’adi makhluuqaatika syamsidh dhuhaa Sayyidinaa Muhammad, wa ‘alaa aalihii wa shohbihii wa sallim. ‘Adada ma’luumaatika wa midaada kalimaatika kullamaa dzakarakadz dzaakiruun wa ghofala ‘an dzikrikal ghaafiluun.",
+          translation: "Ya Allah, limpahkanlah shalawat yang paling utama kepada makhluk-Mu yang paling berbahagia, laksana matahari di waktu dhuha, junjungan kami Nabi Muhammad, beserta keluarga dan para sahabatnya, serta limpahkanlah salam. Sebanyak bilangan apa yang Engkau ketahui dan sebanyak tinta (yang menulis) kalimat-kalimat-Mu, setiap kali orang-orang yang ingat mengingat-Mu dan orang-orang yang lalai lalai dari mengingat-Mu."
         },
         {
           arabic: "وَسَلِّمْ وَرَضِيَ اللهُ تَعَالَى عَنْ سَادَاتِنَا أَصْحَابِ رَسُوْلِ اللهِ أَجْمَعِيْنَ",
